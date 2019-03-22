@@ -66,7 +66,7 @@
     			</div>
  				 </div>
 
-				<input  type="submit" class= "button expanded logbtn" value= "INGRESAR">
+				<input style="background-color: #FF4E00"  type="submit" class= "button expanded logbtn" value= "INGRESAR">
   			</form>
   		</div>
   	</div>

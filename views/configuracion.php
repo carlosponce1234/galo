@@ -6,6 +6,9 @@ session_start();
 	if(!isset($_SESSION["user_id"])){
 		header("Location: ../index.php");
 	}
+	if ($_SESSION['user_permisp']=5) {
+		header("Location: home.php");
+	}
 		$user_id =	$_SESSION['user_id']; 
 		$user_tipo = $_SESSION['user_tipo']; 
 		$user_name = $_SESSION['user_name'] ;
@@ -36,6 +39,11 @@ session_start();
     <link rel="stylesheet" href="../css/foundation.css">
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" type="text/css" href="../font/flaticon.css">
+    <link rel="stylesheet" href="../fonts/style.css">
+    <!--[if lt IE 8]><!-->
+    <link rel="stylesheet" href="../fonts/ie7/ie7.css">
+    <!--<![endif]-->
+</head>
   </head>
 	<body>
 		<div class="grid-container fluid">
@@ -45,14 +53,14 @@ session_start();
       				<div class="barra_lat">	
       				<button class="btn"><span><i class="flaticon-login"></i></span>SUBIR ARCHIVOS</button>
       				<ul class="nav-bar">	
-						<li><button><span>
-							<img src="../img/home-06.png" alt="control"></span> Home </button></li>
-						<li><button><span>
-							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></li>
-						<li><button><span>
-							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></li>
-						<li><button><span>
-							<img src="../img/settings.png" alt="control"></span> Categorias </button></li>
+						<li><a href="home.php"><button><span>
+							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
+						<li><a href="#"><button><span>
+							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
+						<li><a href="clientes.php"><button><span>
+							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></a></li>
+						<li><a href="categorias.php"><button><span>
+							<img src="../img/settings.png" alt="control"></span> Categorias </button></a></li>	
       				</ul>	
       				</div>
     			</div>
@@ -70,7 +78,13 @@ session_start();
 						    		<img src="../img/user.png" alt="usuario">	
 						    </div> 	   
 					</div>
+					<div class="grid-x grid-padding-x">
+						<div class="cell medium-12">
+							<a href="usuarios.php"><i class="flaticon-project"></i> Ver todos los usuarios</a>
+						</div>
+					</div>
 					<div class="grid-x grid-padding-x etiqueta">
+						
 						<div class="cell medium-3 medium-offset-1">
 							<div class="label1">
 						    	<p>Nombre de usuario</p>	
@@ -78,7 +92,7 @@ session_start();
 						</div>
 						<div class="cell medium-5">
 							<div class="input">
-								   <input type="text" name="n_usuario" placeholder="Nombres y Apellidos">	
+								   <input id="n_usuario" type="text" name="n_usuario" placeholder="Nombres y Apellidos">	
 						    	</div>
 						</div>
 
@@ -89,7 +103,7 @@ session_start();
 						</div>
 						<div class="cell medium-5">
 							<div class="input">
-								   <input type="email" name="mail" placeholder="E-mail">	
+								   <input id="mail" type="email" name="mail" placeholder="E-mail">	
 						    	</div>
 						</div>
 						<div class="cell medium-3 medium-offset-1">
@@ -99,7 +113,7 @@ session_start();
 						</div>
 						<div class="cell medium-5">
 							<div class="input">
-								   <input type="password" name="pass" placeholder="Escriba su contraseña">	
+								   <input id="pass" type="password" name="pass" placeholder="Escriba su contraseña">	
 						    	</div>
 						</div>
 						<div class="cell medium-3 medium-offset-1">
@@ -109,7 +123,7 @@ session_start();
 						</div>
 						<div class="cell medium-5">
 							<div class="input">
-								   <input type="password" name="pass1" placeholder="Escriba su contraseña">	
+								   <input id="pass1" type="password" name="pass1" placeholder="Escriba su contraseña">	
 						    	</div>
 						</div>
 						<div class="cell medium-3 medium-offset-1">
@@ -119,7 +133,7 @@ session_start();
 						</div>
 						<div class="cell medium-5">
 							<div class="input">
-								   <select name="tipo_usuario" id="tipo_usuario">
+								   <select name="cliente" id="cliente">
 								   	<option value="0" disabled selected>Elegir empresa o cliente</option>
 								   	<?php 
 								   		foreach ($result2 as $key => $v) {
@@ -179,11 +193,15 @@ session_start();
 						    	</div>
 							
 						</div>
-						<div class="cell medium-5 medium-offset-4 ">
+						<div class="cell medium-3 medium-offset-4 ">
 							<div class="input">
 								<button class="guardar" id="guardar"> Guardar Usuario </button>	   	
 						    </div>
-							
+						</div>
+						<div class="cell medium-3 ">
+							<div class="input">
+								<button class="reset" id="reset"> Limpiar </button>		   	
+						    </div>
 						</div>
 					</div>
 				</div>
@@ -199,8 +217,39 @@ session_start();
 <script>
 	$(document).ready(function(){
 
-		$(document).on('click', '#guarda', function(event){
-			var user_name = $('')
+		$(document).on('click', '#guardar', function(event){
+			var operacion = 'insert';
+			var user_name = $('#n_usuario').val();
+			var user_mail = $('#mail').val();
+			var user_pass1 =$('#pass').val();
+			var user_pass2 =$('#pass1').val();
+			var user_cliente= $('#cliente').val();
+			var user_tipo = $('#tipo_usuario').val();
+			var user_permiso = $('#permisos').val();
+			var user_estado = $('#estado').val();
+			if (user_pass2=user_pass1) {
+				$.ajax({
+					url:'../core/usuarios.php',
+					type:'POST',
+					data:{
+						operacion:operacion,user_name:user_name,user_mail:user_mail,user_pass1:user_pass1,user_cliente:user_cliente,user_tipo:user_tipo,user_permiso:user_permiso,user_estado:user_estado
+					},
+					success: function(data){
+						alert(data);
+						$('#n_usuario').val('');
+						$('#mail').val('');
+						$('#pass').val('');
+						$('#pass1').val('');
+					}
+				});
+			};
 		});	
+		$(document).on('click', '#reset', function(event){
+			$('#n_usuario').val('');
+			$('#mail').val('');
+			$('#pass').val('');
+			$('#pass1').val('');
+		});
+
 	})
 </script>
