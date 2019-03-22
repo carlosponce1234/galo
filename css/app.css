@@ -1,0 +1,135 @@
+#login{
+	margin-top: 10%;
+}
+form .form-icons {
+  text-align: center;
+}
+
+form .form-icons h4 {
+  margin-bottom: 1rem;
+  width: 13rem;
+  height: 13rem;
+  align-content: center;
+  margin-left: 8rem;
+}
+
+form .form-icons .input-group-label {
+  background-color: white;
+  border-color: white;
+  padding-left: 0;
+
+}
+
+form .form-icons .input-group-field {
+  border-color: white;
+  background-color: white;
+
+
+}
+
+form .form-icons i {
+  color: black;
+  width: 2rem;
+}
+form .logbtn{
+	background-color: #4300FF;
+	color: white;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 1rem;
+}
+.cabecera{
+	margin-top: 0.8rem;
+	height: 5rem;
+	box-shadow: 6px 2px 10px 1px rgba(0,0,0,0.24);
+}
+.cabecera h4{
+	text-align: left;
+	padding: 0.8rem;
+	color: 	#4300FF;
+	vertical-align: middle;	
+	margin-top: 0.8rem;
+	font-weight: bold;
+}
+.cabecera p{
+	text-align: right;
+	padding: 0.5rem;
+	color: gray;
+	margin-top: 1rem;
+}
+.cabecera img{
+	height: 4rem;
+	width: 4rem;
+	float: right;
+	margin-top: 0.5rem;
+	margin-right: 0.5rem;
+}
+.barra_lat {
+	margin-top: 8rem;
+	align-content: center;
+}
+.btn{
+	width: 90%;
+	margin-left: 5%;
+	padding: 0.5rem;
+	font-size: 0.8rem;
+	background-color: yellow;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+	font-weight: bolder;;
+}
+.btn span i{
+	margin-right: 1rem;
+}
+.nav-bar {
+	list-style: none;
+	font-size: 1rem;
+	text-align: left;
+	width: 90%;
+	margin-right: 5%;
+}
+.nav-bar li button{
+	color: white;
+	font-size: 1.3rem;
+	font-weight: bold;
+    margin-bottom: 1.5rem;
+    height: 2.5rem;
+}
+.nav-bar li button span{
+	background-color: yellow;
+	border-radius: 50%;
+	color: black;
+	padding:0.5rem;
+	margin-right: 0.5rem
+}
+.nav-bar li button span img{
+	width: 1.6rem;
+	height: 1.6rem;
+	padding-bottom: 0.2rem
+}
+.etiqueta{
+	margin-top: 5rem;
+}
+.label1{
+	color: gray;
+	font-size: 1.3rem;
+	text-align: left;
+}
+.input input{
+	border-radius: 0.5rem;
+	text-align: left;
+	border:none;
+	background-color: #F1F1F1;
+	box-shadow: 6px 2px 10px 1px rgba(0,0,0,0.24);
+	padding: 1rem;
+}
+.input select{
+	width: 28rem;
+	border-radius: 0.5rem;
+	text-align: left;
+	border:none;
+	background-color: #F1F1F1;
+	box-shadow: 6px 2px 10px 1px rgba(0,0,0,0.24);
+}
