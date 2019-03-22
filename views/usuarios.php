@@ -15,7 +15,9 @@ session_start();
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
 
-
+		$sql2 ="SELECT * FROM usuarios";
+		$result2=$mysqli->query($sql2);
+		$row2 = $result2->fetch_assoc();
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -72,6 +74,36 @@ session_start();
 							<input type="text" id="buscar_user" placeholder=" Buscar usuario">
 							</div>
 						</div>
+					</div>
+					<div class="grid-x grid-padding-x tabla">
+						<table>
+							<thead>
+								<td>ID</td>
+								<th>Nombre</th>
+								<th>Correo Electrónico</th>
+								<th>Empresa</th>
+								<th>Tipo de usuario</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</thead>
+							<tbody id="user_table">
+								
+								<?php 
+								   		foreach ($result2 as $key => $v) {
+			
+										echo "<tr>
+												<td id=".$v['user_id'].">".$v['user_id']."</td>
+												<td id=".$v['user_monbre'].">".$v['user_monbre']."</td>
+												<td id=".$v['user_mail'].">".$v['user_mail']."</td>
+												<td id=".$v['user_cliente'].">".$v['user_cliente']."</td>
+												<td id=".$v['user_tipo'].">".$v['user_tipo']."</td>
+												<td id=".$v['user_estado'].">".$v['user_estado']."</td>
+												<td ></td>
+											</tr>";
+										};		
+								 ?>
+							</tbody>
+						</table>
 					</div>
     			</div>
   </body>
