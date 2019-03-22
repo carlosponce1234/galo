@@ -20,6 +20,10 @@ session_start();
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
 
+		$sql3 =" SELECT * FROM permisos";
+		$result3=$mysqli->query($sql3);
+		$row3 = $result3->fetch_assoc();
+
 
  ?>
  <!doctype html>
@@ -42,11 +46,11 @@ session_start();
       				<button class="btn"><span><i class="flaticon-login"></i></span>SUBIR ARCHIVOS</button>
       				<ul class="nav-bar">	
 						<li><button><span>
-							<img src="../img/settings.png" alt="control"></span> Home </button></li>
+							<img src="../img/home-06.png" alt="control"></span> Home </button></li>
 						<li><button><span>
-							<img src="../img/settings.png" alt="control"></span> Agregar Usuarios </button></li>
+							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></li>
 						<li><button><span>
-							<img src="../img/settings.png" alt="control"></span> Agregar Clientes </button></li>
+							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></li>
 						<li><button><span>
 							<img src="../img/settings.png" alt="control"></span> Categorias </button></li>
       				</ul>	
@@ -113,6 +117,74 @@ session_start();
 						    	<p>Institucion</p>	
 						    	</div>
 						</div>
+						<div class="cell medium-5">
+							<div class="input">
+								   <select name="tipo_usuario" id="tipo_usuario">
+								   	<option value="0" disabled selected>Elegir empresa o cliente</option>
+								   	<?php 
+								   		foreach ($result2 as $key => $v) {
+			
+											echo "<option id=".$v['cliente_id']." value ='".$v['cliente_id']."'>".$v['cliente_nombre']."</option>";
+										};		
+								   	 ?>
+								   </select>	
+						    	</div>
+						</div>
+						<div class="cell medium-3 medium-offset-1">
+							<div class="label1">
+						    	<p> Tipo de Usuario</p>	
+						    	</div>
+						</div>
+						<div class="cell medium-5">
+							<div class="input">
+								   <select name="tipo_usuario" id="tipo_usuario">
+								   	<option value="0" disabled selected>Eligir tipo de usuario</option>
+								   	<option value="Administrador">Administrador</option>
+								   	<option value="Colaborador">Colaborador</option>
+								   	<option value="Cliente">Cliente</option>
+								   	<option value="Sub-usuario(cliente)">Sub-usuario(cliente)</option>
+								   </select>	
+						    	</div>
+							
+						</div>
+						<div class="cell medium-3 medium-offset-1">
+							<div class="label1">
+						    	<p>Definir permisos</p>	
+						    	</div>
+						</div>
+						<div class="cell medium-5">
+							<div class="input">
+								   <select name="permisos" id="permisos">
+								   	<option value="0" disabled selected>Asignar permisos</option>
+								   	<?php 
+								   		foreach ($result3 as $key => $v) {
+			
+											echo "<option id=".$v['permisos_id']." value ='".$v['permisos_id']."'>".$v['permisos_desc']."</option>";
+										};		
+								   	 ?>
+								   </select>	
+						    	</div>
+						</div>
+						<div class="cell medium-3 medium-offset-1">
+							<div class="label1">
+						    	<p>Estado</p>	
+						    	</div>
+						</div>
+						<div class="cell medium-5">
+							<div class="input">
+								   <select name="estado" id="estado">
+								   	<option value="0" selected>Activo</option>
+								   	<option value="1">Inactivo</option>
+								   </select>	
+						    	</div>
+							
+						</div>
+						<div class="cell medium-5 medium-offset-4 ">
+							<div class="input">
+								<button class="guardar" id="guardar"> Guardar Usuario </button>	   	
+						    </div>
+							
+						</div>
 					</div>
 				</div>
 			</div>
@@ -127,5 +199,8 @@ session_start();
 <script>
 	$(document).ready(function(){
 
+		$(document).on('click', '#guarda', function(event){
+			var user_name = $('')
+		});	
 	})
 </script>
