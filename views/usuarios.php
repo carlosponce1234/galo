@@ -27,9 +27,9 @@ session_start();
     <link rel="stylesheet" href="../css/foundation.css">
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" type="text/css" href="../font/flaticon.css">
-     <link rel="stylesheet" href="../fonts/style.css">
+     <link rel="stylesheet" href="../font/style.css">
     <!--[if lt IE 8]><!-->
-    <link rel="stylesheet" href="../fonts/ie7/ie7.css">
+    <link rel="stylesheet" href="../font/ie7/ie7.css">
     <!--<![endif]-->
   </head>
   <body>
@@ -38,7 +38,7 @@ session_start();
     			<div class="cell medium-3"style="background-color: #0000AB;">
     				<a href="../core/cerrar_secion.php" class="button alert small" style="margin-top: 1rem;">Cerra secion</a>
       				<div class="barra_lat">	
-      				<button class="btn"><span><i class="flaticon-login"></i></span>SUBIR ARCHIVOS</button>
+      				<button class="btn"><span><i class="icon-cloud-upload"></i></span>SUBIR ARCHIVOS</button>
       				<ul class="nav-bar">	
 						<li><a href="home.php"><button><span>
 							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
