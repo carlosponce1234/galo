@@ -37,8 +37,9 @@ session_start();
   <body>
   	<div class="grid-container fluid">
 			 <div class="grid-x grid-padding-x">
-    			<div class="cell medium-3"style="background-color: #0000AB;">
-    				<a href="../core/cerrar_secion.php" class="button alert small" style="margin-top: 1rem;">Cerra secion</a>
+    			<div class="cell medium-3"style="background-color: #0000AB; height: 50rem;">
+    				<a href="../core/cerrar_secion.php" class="button alert small" style="margin-top: 1rem;">
+    				Cerra secion <i class="icon-enter"></i></a>
       				<div class="barra_lat">	
       				<button class="btn"><span><i class="icon-cloud-upload"></i></span>SUBIR ARCHIVOS</button>
       				<ul class="nav-bar">	
@@ -76,7 +77,8 @@ session_start();
 						</div>
 					</div>
 					<div class="grid-x grid-padding-x tabla">
-						<table>
+						<div class="cell medium-12">
+							<table>
 							<thead>
 								<td>ID</td>
 								<th>Nombre</th>
@@ -87,7 +89,6 @@ session_start();
 								<th>Acciones</th>
 							</thead>
 							<tbody id="user_table">
-								
 								<?php 
 								   		foreach ($result2 as $key => $v) {
 			
@@ -98,12 +99,17 @@ session_start();
 												<td id=".$v['user_cliente'].">".$v['user_cliente']."</td>
 												<td id=".$v['user_tipo'].">".$v['user_tipo']."</td>
 												<td id=".$v['user_estado'].">".$v['user_estado']."</td>
-												<td ></td>
+												<td >
+													<button class='button editar small'>
+													<i class='icon-eye'></i></button>
+									<button class='button desactiva small'><i class='icon-user-minus'></i></button>
+												</td>
 											</tr>";
 										};		
 								 ?>
 							</tbody>
-						</table>
+						    </table>
+						</div>
 					</div>
     			</div>
   </body>

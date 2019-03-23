@@ -175,3 +175,19 @@ form .logbtn{
 .tabla{
 	margin-top: 2rem;
 }
+.tabla div{
+	padding: 2rem;
+}
+.editar{
+	background-color: green;
+	color: white; 
+}
+.editar i{
+	font-size: 1.1rem;
+}
+.desactiva{
+	background-color: red; 
+}
+.desactiva i{
+	font-size: 1.1rem;
+}
