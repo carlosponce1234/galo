@@ -6,9 +6,6 @@ session_start();
 	if(!isset($_SESSION["user_id"])){
 		header("Location: ../index.php");
 	}
-	if ($_SESSION['user_permisp']=5) {
-		header("Location: home.php");
-	}
 		$user_id =	$_SESSION['user_id']; 
 		$user_tipo = $_SESSION['user_tipo']; 
 		$user_name = $_SESSION['user_name'] ;
@@ -49,8 +46,6 @@ session_start();
 		<div class="grid-container fluid">
 			 <div class="grid-x grid-padding-x">
     			<div class="cell medium-3"style="background-color: #0000AB;">
-    				<a href="../core/cerrar_secion.php" class="button alert small" style="margin-top: 1rem;">
-    					<i class="icon-enter"></i> Cerra secion</a>
       				<div class="barra_lat">	
       				<button class="btn"><span><i class="flaticon-login"></i></span>SUBIR ARCHIVOS</button>
       				<ul class="nav-bar">	
@@ -75,13 +70,23 @@ session_start();
 							   	echo $row['user_monbre'];
 							   }; ?></p>
 						    </div>
-						    <div class="cell medium-3">
+						    <div class="cell medium-2">
 						    		<img src="../img/user.png" alt="usuario">	
+						    </div>
+						    <div class="cell medium-1 ">
+						    	<div class="cerrar_secion">
+						    			<a href="../core/cerrar_secion.php">
+    					<i class="icon-enter"></i> </a>
+						    		
+						    	</div>
+						    	
 						    </div> 	   
 					</div>
 					<div class="grid-x grid-padding-x">
-						<div class="cell medium-12">
-							<a href="usuarios.php"><i class="flaticon-project"></i> Ver todos los usuarios</a>
+						<div class="cell medium-3 medium-offset-9" >
+							<div style="margin-top: 1.5rem;">
+								<a  class="guardar" href="usuarios.php"><i class="icon-eye"></i> Ver todos</a>
+							</div>
 						</div>
 					</div>
 					<div class="grid-x grid-padding-x etiqueta">

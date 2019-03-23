@@ -14,11 +14,13 @@
 	}
 	var icons = {
 		'icon-home': '&#xe900;',
+		'icon-folder-open': '&#xe930;',
 		'icon-floppy-disk': '&#xe962;',
 		'icon-user': '&#xe971;',
 		'icon-users': '&#xe972;',
 		'icon-user-plus': '&#xe973;',
 		'icon-user-minus': '&#xe974;',
+		'icon-user-tie': '&#xe976;',
 		'icon-binoculars': '&#xe985;',
 		'icon-search': '&#xe986;',
 		'icon-key': '&#xe98d;',

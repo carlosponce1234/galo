@@ -18,6 +18,10 @@ session_start();
 		$sql2 ="SELECT * FROM usuarios";
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
+
+		$sql3 =" SELECT * FROM permisos";
+		$result3=$mysqli->query($sql3);
+		$row3 = $result3->fetch_assoc();
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -93,13 +97,13 @@ session_start();
 								   		foreach ($result2 as $key => $v) {
 			
 										echo "<tr>
-												<td id=".$v['user_id'].">".$v['user_id']."</td>
-												<td id=".$v['user_monbre'].">".$v['user_monbre']."</td>
-												<td id=".$v['user_mail'].">".$v['user_mail']."</td>
-												<td id=".$v['user_cliente'].">".$v['user_cliente']."</td>
-												<td id=".$v['user_tipo'].">".$v['user_tipo']."</td>
-												<td id=".$v['user_estado'].">".$v['user_estado']."</td>
-												<td >
+												<td id=".$v['user_id']." class='user_id'>".$v['user_id']."</td>
+												<td id=".$v['user_monbre']." class='user_nombre'>".$v['user_monbre']."</td>
+												<td id=".$v['user_mail']." class='user_mail'>".$v['user_mail']."</td>
+												<td id=".$v['user_cliente']." class='user_cliente'>".$v['user_cliente']."</td>
+												<td id=".$v['user_tipo']." class='user_tipo'>".$v['user_tipo']."</td>
+												<td id=".$v['user_estado']." class='user_estado'>".$v['user_estado']."</td>
+												<td>
 													<button id='edit_user' class='button editar small'>
 													<i class='icon-eye'></i></button>
 									<button class='button desactiva small'><i class='icon-user-minus'></i></button>
@@ -113,6 +117,34 @@ session_start();
 					</div>
     			</div>
   </body>
+  <div class="reveal" id="e_user" data-reveal data-animation-in="slidein">
+  	<h5>Editar usuario</h5>
+  	<hr>
+  	<form action="">
+  		<label for="n_usuario">Nombre de usuario</label>
+  		<input type="text" id="n_usuario" name="n_usuario">
+  		<label for="pass">Contraseña</label>
+  		<input type="password" id="pass" name="pass">
+  		<label for="mail">Correo electronico</label>
+  		<input type="email" id="mail" name="mail">
+  		<label for="permisos">Permisos</label>
+  		<select name="permisos" id="permisos">
+			<option value="" disabled selected id="permiso">os</option>
+			<?php 
+			foreach ($result3 as $key => $v) {
+				echo "<option id=".$v['permisos_id']." value ='".$v['permisos_id']."'>".$v['permisos_desc']."</option>";
+				};		
+				  	 ?>
+		</select>
+		<label for="estado">Estado</label>
+		<select name="estado" id="estado">
+			 	<option value="0" selected>Activo</option>
+			 	<option value="1">Inactivo</option>
+		</select>
+		<button class="guardar" id="guardar"><i class="icon-floppy-disk"></i>Guardar</button>
+		<button class="reset" id="cancelar"><i class="icon-cross"></i>Cancelar</button>	
+  	</form>
+  </div>
    <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>
@@ -123,7 +155,23 @@ session_start();
 	$(document).ready(function(){
 		//Editar Usuarios 
 		$(document).on('click','#edit_user', function(event){
-			
+			var cell = $(this).parent();
+			var row = cell.parent();
+			var user_id = row.children('.user_id');
+			var operacion = 'fill';
+		/*	$.ajax({
+				url:'../core/usuarios.php',
+				type:'POST',
+				data:{
+					operacion : operacion,
+					user_id : user_id,
+
+				},
+				success: function(data){
+					var tmp = data.split(",");
+				};
+			});*/
+			$('#e_user').foundation('open');
 		});
 	})
 </script>

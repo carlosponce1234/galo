@@ -39,9 +39,8 @@ form .logbtn{
 	font-size: 1rem;
 }
 .cabecera{
-	margin-top: 0.8rem;
 	height: 5rem;
-	box-shadow: 6px 2px 10px 1px rgba(0,0,0,0.24);
+	box-shadow: 6px 2px 5px 1px rgba(0,0,0,0.12);
 }
 .cabecera h4{
 	text-align: left;
@@ -122,7 +121,7 @@ form .logbtn{
 	text-align: left;
 	border:none;
 	background-color: #F1F1F1;
-	box-shadow: 6px 2px 10px 1px rgba(0,0,0,0.24);
+	
 	padding: 1rem;
 }
 .input select{
@@ -131,7 +130,7 @@ form .logbtn{
 	text-align: left;
 	border:none;
 	background-color: #F1F1F1;
-	box-shadow: 6px 2px 10px 1px rgba(0,0,0,0.24);
+
 }
 .guardar{
 	color: white;
@@ -199,4 +198,14 @@ form .logbtn{
 }
 .buscar_btn i{
 	padding: 0.8rem;
+}
+.cerrar_secion{
+	height: 2.5rem;
+	width: 2.5rem;
+	margin-top: 1.5rem;
+}
+.cerrar_secion a i{
+	text-align: center;
+	color: red;
+	font-size: 2rem;
 }

@@ -21,7 +21,27 @@ if (isset($operacion)) {
    				echo "ERROR: No se pudo realizar operacion. " . $mysqli->error;
 					}
 			break;
-		
+		case 'fill':
+			# code...
+		$user_id = $_POST['user_id'];
+			if (isset($user_id)) {
+				$sql="SELECT * FROM usuarios WHERE user_id = '$user_id'";
+				if ($mysqli->query($sql) === true) {
+					# code...
+					$result=$mysqli->query($sql);
+				    $rows = $result->num_rows;
+				    $row = $result->fetch_assoc();
+				    echo $row['user_id'].','.$row['user_monbre'].','.$row['user_mail'].','.$row['user_pass'].','.$row['user_tipo'].','.$row['user_cliente'].','.$row['user_permiso'].','.$row['user_estado'];
+				} else {
+					# code...
+					echo " , , , , , , , ";
+				}
+				
+				
+			}else{
+				echo " , , , , , , , ";
+			}
+			break;
 		default:
 			# code...
 			break;
