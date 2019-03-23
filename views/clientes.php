@@ -73,7 +73,7 @@ session_start();
 					<div class="grid-x grid-padding-x">
 						<div class="cell medium-3 medium-offset-9" >
 							<div style="margin-top: 1.5rem;">
-								<a  class="guardar" href="usuarios.php"><i class="icon-eye"></i> Ver todos</a>
+								<a  class="guardar" href="ver_clientes.php"><i class="icon-eye"></i> Ver todos</a>
 							</div>
 						</div>
 					</div>
@@ -85,7 +85,7 @@ session_start();
 						</div>
 						<div class="cell medium-5">
 							<div class="input">
-								   <input id="n_usuario" type="text" name="n_usuario" placeholder="Nombres y Apellidos">	
+								   <input id="n_cliente" type="text" name="n_usuario" placeholder="Nombres y Apellidos">	
 						    	</div>
 						</div>
 						<div class="cell medium-3 medium-offset-1">
@@ -120,7 +120,6 @@ session_start();
 						</div>
 					</div>
     			</div>
-	
 </body>
 <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
@@ -129,8 +128,35 @@ session_start();
 </html>
 <script>
 	$(document).ready(function(){
-		$(document).on('click', '#guardar', function(){
-			
+
+		$(document).on('click', '#guardar', function(event){
+			var operacion = 'insert';
+			var n_cliente = $('#n_cliente').val();
+			var mail = $('#mail').val();
+			var info = $('#info').val();
+			//alert(operacion+', '+n_cliente+', '+mail+', '+info);
+			$.ajax({
+				url: '../core/clientes.php',
+				type: 'POST',
+				data: {
+					operacion : operacion,
+					n_cliente : n_cliente,
+					mail : mail,
+					info : info,
+				},
+				success: function(data){
+					alert(data);
+					$('#n_cliente').val('')
+					$('#mail').val('');
+					$('#info').val('');
+				},
+			});
 		});
+		$(document).on('click', '#reset', function(event){
+			$('#n_cliente').val('')
+					$('#mail').val('');
+					$('#info').val('');
+		});
+
 	})
 </script>
