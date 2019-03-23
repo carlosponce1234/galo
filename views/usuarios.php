@@ -42,10 +42,8 @@ session_start();
   	<div class="grid-container fluid">
 			 <div class="grid-x grid-padding-x">
     			<div class="cell medium-3"style="background-color: #0000AB; height: 50rem;">
-    				<a href="../core/cerrar_secion.php" class="button alert small" style="margin-top: 1rem;">
-    				Cerra secion <i class="icon-enter"></i></a>
-      				<div class="barra_lat">	
-      				<button class="btn"><span><i class="icon-cloud-upload"></i></span>SUBIR ARCHIVOS</button>
+    				<div class="barra_lat">	
+      				<button class="btn"><span><i class="flaticon-login"></i></span>SUBIR ARCHIVOS</button>
       				<ul class="nav-bar">	
 						<li><a href="home.php"><button><span>
 							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
@@ -61,15 +59,23 @@ session_start();
     			<div class="cell medium-9">
     				<div class="grid-x grid-padding-x cabecera">
 							<div class="cell medium-5">
-							   <h4>LISTADO DE USUARIOS</h4>		
+							   <h4>CREAR NUEVO USUARIO</h4>		
 						    </div>
 						    <div class="cell medium-4">
 						    	<p>Usuario: <?php if ($rows>0) {
 							   	echo $row['user_monbre'];
 							   }; ?></p>
 						    </div>
-						    <div class="cell medium-3">
+						    <div class="cell medium-2">
 						    		<img src="../img/user.png" alt="usuario">	
+						    </div>
+						    <div class="cell medium-1 ">
+						    	<div class="cerrar_secion">
+						    			<a href="../core/cerrar_secion.php">
+    					<i class="icon-enter"></i> </a>
+						    		
+						    	</div>
+						    	
 						    </div> 	   
 					</div>
 					<div class="grid-x grid-margin-x acciones">
@@ -129,7 +135,7 @@ session_start();
   		<input type="email" id="mail" name="mail">
   		<label for="permisos">Permisos</label>
   		<select name="permisos" id="permisos">
-			<option value="" disabled selected id="permiso">os</option>
+			<option value="" disabled selected id="permiso"></option>
 			<?php 
 			foreach ($result3 as $key => $v) {
 				echo "<option id=".$v['permisos_id']." value ='".$v['permisos_id']."'>".$v['permisos_desc']."</option>";
@@ -153,25 +159,48 @@ session_start();
 </html>  
 <script>
 	$(document).ready(function(){
-		//Editar Usuarios 
+	//Editar Usuarios 
+		//MODAL VER USUARIOS 
 		$(document).on('click','#edit_user', function(event){
 			var cell = $(this).parent();
 			var row = cell.parent();
-			var user_id = row.children('.user_id');
+			var cell_id = row.children('.user_id');
+			var user_id = cell_id.attr('id');
 			var operacion = 'fill';
-		/*	$.ajax({
-				url:'../core/usuarios.php',
-				type:'POST',
-				data:{
+			$.ajax({
+				url: '../core/usuarios.php',
+				type: 'POST',
+				data: {
 					operacion : operacion,
 					user_id : user_id,
-
 				},
-				success: function(data){
-					var tmp = data.split(",");
-				};
-			});*/
+				success: function (data)
+				{
+					var tmp = data.split(',');
+					alert(data);
+					$('#n_usuario').val(tmp[1]);
+					$('#pass').val(tmp[3]);
+					$('#mail').val(tmp[2]);
+					$('#permiso').val(tmp[6]);
+					$('#permiso').html(tmp[7]);
+				} 
+			});
 			$('#e_user').foundation('open');
 		});
+		//CERRA MODAL VER USUARIOS 
+		$(document).on('click', '#cancelar',function(event){
+			$('#e_user').foundation('close');
+		})
+		//GUARDAR CAMBIOS
+		$(document).on('click','#guardar',function(event){
+			var r = confirm('Seguro desea guardar los cambios?');
+			if (r == true) {
+				var n_usuario = $('#n_usuario').val();
+				var pass = $('#pass').val();
+				var mail = $('#mail').val();
+				var permiso = $('#permisos').val();
+				var estado = $('#estado').val();
+			}
+		})
 	})
 </script>
