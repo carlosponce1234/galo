@@ -57,6 +57,20 @@ if (isset($operacion)) {
 
 
 				break;
+			case 'disabled':
+					$user_id = $_POST['user_id'];
+			if (isset($user_id)){
+				$estado = $_POST['estado'];
+				$sql = "UPDATE usuarios SET  user_estado = '$estado' WHERE user_id = '$user_id' ";
+					if($mysqli->query($sql) === true){
+    				echo "Operacion realizada con exito.";
+				} else{
+   				echo "ERROR: No se pudo realizar operacion. " . $mysqli->error;
+					}
+			}else{
+				echo "ERORR: NO SE PUEDE LERR EL ID";
+			}
+					break;	
 		default:
 			# code...
 			break;

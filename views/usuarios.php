@@ -239,8 +239,32 @@ session_start();
 			};
 		});
 		$(document).on('click', '#desactiva', function(event){
+			var r = confirm('Esta seguro que desea desactivar el usuario?');
+			if (r == true) {
+				var cell = $(this).parent();
+				var row = cell.parent();
+				var cell_estd = row.children('.user_estado');
+				var estado = '1';
+				var cell_id = row.children('.user_id');
+				var user_id = cell_id.attr('id');
+				var operacion = 'disabled';
+				//alert(user_id+', '+estado);
+				$.ajax({
+					url: '../core/usuarios.php',
+					type: 'POST',
+					data:{
+						user_id : user_id,
+						operacion : operacion,
+						estado : estado,
+					},
+					success: function(data){
+						alert(data);
+					},
+				});
+			};
+		});
+		$(document).on('keyup' , '#buscar_user', function(event){
 			
 		})
-
 	})
 </script>
