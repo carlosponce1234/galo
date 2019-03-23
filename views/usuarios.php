@@ -68,11 +68,11 @@ session_start();
 						    		<img src="../img/user.png" alt="usuario">	
 						    </div> 	   
 					</div>
-					<div class="grid-x grid-padding-x acciones">
-						<div class="cell medium-6 medium-offset-1">
+					<div class="grid-x grid-margin-x acciones">
+						<div class="cell medium-7 medium-offset-1">
 							<div id="wraper">
-								<i class="flaticon-musica-searcher"></i>
 							<input type="text" id="buscar_user" placeholder=" Buscar usuario">
+							<button class="buscar_btn"><i class="icon-search"></i></button>
 							</div>
 						</div>
 					</div>
@@ -100,7 +100,7 @@ session_start();
 												<td id=".$v['user_tipo'].">".$v['user_tipo']."</td>
 												<td id=".$v['user_estado'].">".$v['user_estado']."</td>
 												<td >
-													<button class='button editar small'>
+													<button id='edit_user' class='button editar small'>
 													<i class='icon-eye'></i></button>
 									<button class='button desactiva small'><i class='icon-user-minus'></i></button>
 												</td>
@@ -113,3 +113,17 @@ session_start();
 					</div>
     			</div>
   </body>
+   <script src="../js/vendor/jquery.js"></script>
+    <script src="../js/vendor/what-input.js"></script>
+    <script src="../js/vendor/foundation.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>  
+<script>
+	$(document).ready(function(){
+		//Editar Usuarios 
+		$(document).on('click','#edit_user', function(event){
+			
+		});
+	})
+</script>

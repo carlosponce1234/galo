@@ -13,14 +13,18 @@
 		el.innerHTML = '<span style="font-family: \'galo\'">' + entity + '</span>' + html;
 	}
 	var icons = {
+		'icon-home': '&#xe900;',
 		'icon-floppy-disk': '&#xe962;',
 		'icon-user': '&#xe971;',
 		'icon-users': '&#xe972;',
 		'icon-user-plus': '&#xe973;',
 		'icon-user-minus': '&#xe974;',
 		'icon-binoculars': '&#xe985;',
+		'icon-search': '&#xe986;',
 		'icon-key': '&#xe98d;',
 		'icon-key2': '&#xe98e;',
+		'icon-lock': '&#xe98f;',
+		'icon-unlocked': '&#xe990;',
 		'icon-cog': '&#xe994;',
 		'icon-bin': '&#xe9ac;',
 		'icon-cloud-download': '&#xe9c2;',
@@ -29,6 +33,8 @@
 		'icon-upload2': '&#xe9c6;',
 		'icon-eye': '&#xe9ce;',
 		'icon-blocked': '&#xea0e;',
+		'icon-cross': '&#xea0f;',
+		'icon-checkmark': '&#xea10;',
 		'icon-enter': '&#xea13;',
 		'icon-sort-alpha-asc': '&#xea48;',
 		'icon-sort-alpha-desc': '&#xea49;',
