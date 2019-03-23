@@ -41,7 +41,6 @@ session_start();
     <link rel="stylesheet" href="../font/ie7/ie7.css">
     <!--<![endif]-->
 </head>
-  </head>
 	<body>
 		<div class="grid-container fluid">
 			 <div class="grid-x grid-padding-x">
@@ -51,7 +50,7 @@ session_start();
       				<ul class="nav-bar">	
 						<li><a href="home.php"><button><span>
 							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
-						<li><a href="#"><button><span>
+						<li><a href="configuracion.php"><button><span>
 							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
 						<li><a href="clientes.php"><button><span>
 							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></a></li>
@@ -216,7 +215,6 @@ session_start();
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>
     <script src="../js/app.js"></script>
-  </body>
 </html>  
 <script>
 	$(document).ready(function(){

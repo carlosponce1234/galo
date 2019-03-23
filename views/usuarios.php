@@ -47,7 +47,7 @@ session_start();
       				<ul class="nav-bar">	
 						<li><a href="home.php"><button><span>
 							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
-						<li><a href="#"><button><span>
+						<li><a href="configuracion.php"><button><span>
 							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
 						<li><a href="clientes.php"><button><span>
 							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></a></li>
@@ -264,7 +264,21 @@ session_start();
 			};
 		});
 		$(document).on('keyup' , '#buscar_user', function(event){
-			
+			var input = $('#buscar_user');
+  			var filter = input.val().toUpperCase();
+  			var table = $('#mytable');
+  			var tr = $('#mytable tr');
+  			//alertify.log(filter);
+  			for (var i = 0; i< tr.length;  i++) {
+  				td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
 		})
 	})
 </script>

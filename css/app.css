@@ -132,6 +132,14 @@ form .logbtn{
 	background-color: #F1F1F1;
 
 }
+.input textarea {
+	width: 28rem;
+	border-radius: 0.5rem;
+	text-align: left;
+	border:none;
+	background-color: #F1F1F1;
+
+}
 .guardar{
 	color: white;
 	background-color: #0000AB;
