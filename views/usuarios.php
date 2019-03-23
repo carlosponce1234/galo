@@ -88,7 +88,7 @@ session_start();
 					</div>
 					<div class="grid-x grid-padding-x tabla">
 						<div class="cell medium-12">
-							<table>
+							<table id="mytable">
 							<thead>
 								<td>ID</td>
 								<th>Nombre</th>
@@ -101,18 +101,24 @@ session_start();
 							<tbody id="user_table">
 								<?php 
 								   		foreach ($result2 as $key => $v) {
-			
+								   			if ($v['user_estado'] =='0') {
+								   				# code...
+								   				$est = 'A';
+								   			} else {
+								   				# code...
+								   				$est = 'I';
+								   			};
 										echo "<tr>
 												<td id=".$v['user_id']." class='user_id'>".$v['user_id']."</td>
 												<td id=".$v['user_monbre']." class='user_nombre'>".$v['user_monbre']."</td>
 												<td id=".$v['user_mail']." class='user_mail'>".$v['user_mail']."</td>
 												<td id=".$v['user_cliente']." class='user_cliente'>".$v['user_cliente']."</td>
 												<td id=".$v['user_tipo']." class='user_tipo'>".$v['user_tipo']."</td>
-												<td id=".$v['user_estado']." class='user_estado'>".$v['user_estado']."</td>
+												<td id=".$v['user_estado']." class='user_estado'>".$est."</td>
 												<td>
 													<button id='edit_user' class='button editar small'>
 													<i class='icon-eye'></i></button>
-									<button class='button desactiva small'><i class='icon-user-minus'></i></button>
+									<button id='desactiva' class='button desactiva small'><i class='icon-user-minus'></i></button>
 												</td>
 											</tr>";
 										};		
@@ -127,6 +133,7 @@ session_start();
   	<h5>Editar usuario</h5>
   	<hr>
   	<form action="">
+  		<input type="text" name="user_id" id="user_id" style="display: none;">
   		<label for="n_usuario">Nombre de usuario</label>
   		<input type="text" id="n_usuario" name="n_usuario">
   		<label for="pass">Contraseña</label>
@@ -135,7 +142,7 @@ session_start();
   		<input type="email" id="mail" name="mail">
   		<label for="permisos">Permisos</label>
   		<select name="permisos" id="permisos">
-			<option value="" disabled selected id="permiso"></option>
+			<option  selected id="permiso"></option>
 			<?php 
 			foreach ($result3 as $key => $v) {
 				echo "<option id=".$v['permisos_id']." value ='".$v['permisos_id']."'>".$v['permisos_desc']."</option>";
@@ -148,7 +155,7 @@ session_start();
 			 	<option value="1">Inactivo</option>
 		</select>
 		<button class="guardar" id="guardar"><i class="icon-floppy-disk"></i>Guardar</button>
-		<button class="reset" id="cancelar"><i class="icon-cross"></i>Cancelar</button>	
+		<button  class="reset" id="cancelar"><i class="icon-cross"></i>Cancelar</button>	
   	</form>
   </div>
    <script src="../js/vendor/jquery.js"></script>
@@ -159,6 +166,15 @@ session_start();
 </html>  
 <script>
 	$(document).ready(function(){
+		/*var table = $('#mytable');
+ 		var tr = table.children(tr);
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    var td = tr[i].children(td)[6];
+    var btn = td.children('#desactiva');
+        btn.attr('dissabled');
+      }; */
 	//Editar Usuarios 
 		//MODAL VER USUARIOS 
 		$(document).on('click','#edit_user', function(event){
@@ -169,7 +185,7 @@ session_start();
 			var operacion = 'fill';
 			$.ajax({
 				url: '../core/usuarios.php',
-				type: 'POST',
+				type:'POST',
 				data: {
 					operacion : operacion,
 					user_id : user_id,
@@ -177,7 +193,7 @@ session_start();
 				success: function (data)
 				{
 					var tmp = data.split(',');
-					alert(data);
+					$('#user_id').val(tmp[0]);
 					$('#n_usuario').val(tmp[1]);
 					$('#pass').val(tmp[3]);
 					$('#mail').val(tmp[2]);
@@ -200,7 +216,31 @@ session_start();
 				var mail = $('#mail').val();
 				var permiso = $('#permisos').val();
 				var estado = $('#estado').val();
-			}
+				var user_id = $('#user_id').val();
+				var operacion = 'update';
+				//alert(n_usuario+', '+pass+', '+mail+', '+permiso+', '+estado+', '+user_id+','+operacion);
+				$.ajax({
+					url: '../core/usuarios.php',
+					type: 'POST',
+					data:{
+						operacion : operacion,
+						n_usuario : n_usuario,
+						pass : pass,
+						mail : mail,
+						permiso : permiso,
+						estado : estado,
+						user_id : user_id,
+					},
+					success: function(data){
+						alert(data);
+					},
+				});
+				$('#e_user').foundation('close');
+			};
+		});
+		$(document).on('click', '#desactiva', function(event){
+			
 		})
+
 	})
 </script>

@@ -35,6 +35,28 @@ if (isset($operacion)) {
 				echo " id no seteado ";
 			}
 			break;
+			case 'update':
+				# code...
+			$user_id = $_POST['user_id'];
+			if (isset($user_id)) {
+				$n_user = $_POST['n_usuario'];
+				$pass = $_POST['pass'];
+				$mail = $_POST['mail'];
+				$permiso = $_POST['permiso'];
+				$estado = $_POST['estado'];
+				$sql = "UPDATE usuarios SET user_monbre = '$n_user', user_pass ='$pass' , user_mail = '$mail' ,
+						user_permiso = '$permiso' , user_estado = '$estado' WHERE user_id = '$user_id' ";
+					if($mysqli->query($sql) === true){
+    				echo "Operacion realizada con exito.";
+				} else{
+   				echo "ERROR: No se pudo realizar operacion. " . $mysqli->error;
+					}	
+			} else{
+				echo "ERORR: NO SE PUEDE LERR EL ID";
+			}
+
+
+				break;
 		default:
 			# code...
 			break;
