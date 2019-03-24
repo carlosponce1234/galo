@@ -328,13 +328,29 @@ form .logbtn{
 	color: white;
 	border-radius: 1.2rem;
 	padding: 0.8rem;
-	margin-left: 1.7rem;
 	text-align: center;
 	margin-top: 0.5rem;
+	width: 100%;
 }
 .nav-bar-result input {
 	border-radius: 1.2rem;
 	padding: 0.8rem;
 	text-align: center;
 	margin-top: 1rem;
+}
+.nav-bar-result select {
+	border-radius: 1.2rem;
+	padding-left: 0.5rem;
+	text-align: center;
+	margin-top: 1rem;
+}
+ #bus-result{
+	background-color: #FFD500;
+	color: black;
+	border-radius: 1.2rem;
+	padding: 0.8rem;
+	text-align: center;
+	margin-top: 0.5rem;
+	width: 100%;
+	cursor: pointer;
 }

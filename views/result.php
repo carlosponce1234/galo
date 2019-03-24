@@ -39,7 +39,7 @@ session_start();
 		} else {
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos WHERE doc_anio = '$doc_anio' AND doc_papelera = 0";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -51,6 +51,9 @@ session_start();
 				$row2 = $result2->fetch_assoc();
 			}
 		};
+		$sql3 =" SELECT * FROM categoria";
+		$result3=$mysqli->query($sql3);
+		$row3 = $result3->fetch_assoc();
 
 		
  ?>
@@ -82,7 +85,46 @@ session_start();
 				  	?>
 				  <div class="nav-bar-result">		
   					<button>NUMERO DE DECLARACIÓN</button>
-  						<input type="text" name="doc_numliqu" id="doc_numliq" placeholder="N° Liquidacion">
+  					<input type="text" name="doc_numliqu" id="doc_numliq" placeholder="N° Liquidacion">
+  					<button>AÑO DE PUBLICACIÓN</button>
+									<select name="anio" id="anio">
+										<option value="2015">2015</option>
+										<option value="2016">2016</option>
+										<option value="2017">2017</option>
+										<option value="2018">2018</option>
+										<option value="2019" selected>2019</option>
+										<option value="2020">2020</option>
+										<option value="2021">2021</option>
+										<option value="2022">2022</option>
+										<option value="2023">2023</option>
+										<option value="2024">2024</option>
+										<option value="2025">2025</option>
+										<option value="2026">2026</option>
+										<option value="2027">2027</option>
+										<option value="2028">2028</option>
+										<option value="2029">2029</option>
+										<option value="2030">2030</option>
+										<option value="2031">2031</option>
+										<option value="2032">2032</option>
+										<option value="2033">2033</option>
+										<option value="2034">2034</option>
+										<option value="2035">2035</option>
+										<option value="2036">2036</option>
+										<option value="2037">2037</option>
+										<option value="2038">2038</option>
+										<option value="2039">2039</option>
+										<option value="2040">2040</option>
+									</select>	
+									<button>CATEGORIA</button>
+  									<select name="cat" id="cat">
+  										<option value="0"  selected>Todas las categorias</option>
+  										<?php 
+										foreach ($result3 as $key => $v) {
+										echo "<option id=".$v['cat_id']." value ='".$v['cat_id']."'>".$v['cat_nombre']."</option>";
+										};		
+				  						 ?>
+  									</select>
+  									<button id="bus-result"><i class="icon-search"></i> Buscar</button>
   				  </div>	
     			</div>
 			</div>
@@ -125,7 +167,8 @@ session_start();
 				<div class="cell medium-12">
 					<table id="mytable">
 						<thead>
-							<td>ID</td>
+							<th>ID</th>
+							<th>FECHA</th>
 							<th>Nombre</th>
 							<th>Año</th>
 							<th>Categoria</th>
@@ -135,11 +178,14 @@ session_start();
 							<?php 
 							if ($rows2 > 0) {
 								foreach ($result2 as $key => $v) {
+									$fecha = strtotime($v['doc_timestamp']);
+									$fecha1 = date('d/m/y',$fecha);
 								echo "<tr>
 									<td id=".$v['doc_id']." class='doc_id'>".$v['doc_id']."</td>
+									<td id=".$fecha1." class='doc_timestamp'>".$fecha1."</td>
 									<td id=".$v['doc_numliq']." class='doc_nombre'><i class='icon-file-pdf'></i> ".$v['doc_numliq']."</td>
 									<td id=".$v['doc_anio']." class='doc_año'>".$v['doc_anio']."</td>
-									<td id=".$v['doc_cat']." class='doc_cat'>".$v['doc_cat']."</td>
+									<td id=".$v['doc_cat']." class='doc_cat'>".$v['cat_nombre']."</td>
 									<td id=".$v['doc_ruta'].">
 									<button id='ver_pdf' class='button editar small'>
 									<i class='icon-cloud-download'></i></button>
@@ -148,7 +194,7 @@ session_start();
 									</tr>";
 								}			
 							}else {
-								echo "<tr> No se encontraron resultados... </tr>";	
+								echo "<tr> <td>No se encontraron resultados... </td></tr>";	
 							};
 							 ?>
 						</tbody>
@@ -163,3 +209,20 @@ session_start();
     <script src="../js/vendor/foundation.js"></script>
     <script src="../js/app.js"></script>
 </html>  
+<script>
+	$(document).ready(function(){
+		$(document).on('click', '#ver_pdf', function(event){
+			var dir = $(this).parent().attr('id');
+			var url = "../"+dir+".pdf";
+			//alert(url);
+			window.open(url,'_blank');
+		});
+		$(document).on('click', '#elimina', function(event){
+			var cell = $(this).parent();
+			var row = cell.parent();
+			var cell_id = row.children('.cat_id');
+			var cat_id = cell_id.attr('id');
+			var operacion = 'fill';
+		})
+	})
+</script>
