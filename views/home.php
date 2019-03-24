@@ -112,7 +112,7 @@ session_start();
   								<div class="label-home">
   									<button>CATEGORIA</button>
   									<select name="cat" id="cat">
-  										<option value="" disabled selected>Elegir una categoria</option>
+  										<option value="0"  selected>Todas las categorias</option>
   										<?php 
 										foreach ($result3 as $key => $v) {
 										echo "<option id=".$v['cat_id']." value ='".$v['cat_id']."'>".$v['cat_nombre']."</option>";
@@ -139,11 +139,18 @@ session_start();
 <script>
 	$(document).ready(function(){
 		$(document).on('click', '#search-home', function(event){
-			var doc_numliq = $('#doc_numliq').val();
-			var anio = $('#anio').val();
-			var cat = $('#cat').val();
-			var url = 'result.php?doc_numliq='+doc_numliq+'&anio='+anio+'&cat='+cat+'';
-			alert(url);
+			var doc_nu = $('#doc_numliq').val().legth;
+      var anio = $('#anio').val();
+      var cat = $('#cat').val();
+      //alert(doc_nu);
+      if (doc_nu === undefined) {
+        var url = 'result.php?anio='+anio+'&cat='+cat+'';
+      } else {
+        var doc_numliq = $('#doc_numliq').val();
+        var url = 'result.php?doc_numliq='+doc_numliq+'&anio='+anio+'&cat='+cat+'';
+      };
+			//alert(anio);
+			window.location.assign(url);
 		});
 	})
 </script>

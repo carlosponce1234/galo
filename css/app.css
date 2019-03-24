@@ -304,3 +304,37 @@ form .logbtn{
 	color: white;
 	box-shadow: 6px 2px 8px 1px rgba(0,0,0,0.22);
 }
+.papelera i{
+	color: white;
+	background-color: #0000AB;
+	height: 3rem;
+	width: 10rem;
+	padding:0.5rem;
+	text-align: center;
+	border-radius: 0.5rem;
+	margin:1.5rem;
+	cursor: pointer;
+
+}
+.editar1 {
+	background-color: green;
+	color: white; 
+}
+.editar1 i {
+	font-size: 1.1rem;
+}
+.nav-bar-result button {
+	background-color: #20007A;
+	color: white;
+	border-radius: 1.2rem;
+	padding: 0.8rem;
+	margin-left: 1.7rem;
+	text-align: center;
+	margin-top: 0.5rem;
+}
+.nav-bar-result input {
+	border-radius: 1.2rem;
+	padding: 0.8rem;
+	text-align: center;
+	margin-top: 1rem;
+}

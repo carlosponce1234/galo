@@ -46,7 +46,12 @@ session_start();
 			 <div class="grid-x grid-padding-x">
     			<div class="cell medium-3"style="background-color: #0000AB;">
       				<div class="barra_lat">	
-      				<button class="btn"><span><i class="flaticon-login"></i></span>SUBIR ARCHIVOS</button>
+      				<?php 
+						 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+  							# code...
+  							echo "<button class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
+  						}; 
+				  	?>	
       				<ul class="nav-bar">	
 						<li><a href="home.php"><button><span>
 							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
