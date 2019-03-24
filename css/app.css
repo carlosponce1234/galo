@@ -217,3 +217,90 @@ form .logbtn{
 	color: red;
 	font-size: 2rem;
 }
+.us_img img {
+	width: 0.1rem;
+	height: 0.1rem;
+} 
+.text p {
+	color: white;
+    font-size: 1.3rem;
+    margin-bottom: 0;
+}
+.op-home i{
+	color: white;
+	font-size: 2.3rem;
+}
+.op-home p{
+	margin-bottom: 0;
+	text-align: center;
+}
+.form-home{
+	margin-top: 5rem;
+
+}
+.form-home h3{
+	color: white;
+	text-align: center;
+}
+.label-home {
+	margin-top: 1rem;
+	align-content: center;
+}
+.label-home button{
+	color: white;
+	font-size: 0.8rem;
+	background-color: #20007A;
+	border-radius: 1.5rem;
+	padding: 1rem;
+	text-align: center;
+	width: 15rem;
+	margin-left: 3rem;
+}
+.label-home input{
+	font-size: 0.8rem;
+	border-radius: 1.5rem;
+	padding: 0.2rem;
+	text-align: center;
+	margin-top: 1rem;
+}
+.label-home select{
+	font-size: 0.8rem;
+	border-radius: 1.5rem;
+	padding-left: 1rem;
+	text-align: center;
+	margin-top: 1rem;
+}
+.bt-home button{
+	background-color: #FFD500;
+	padding: 0.5rem;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 1rem;
+	font-size: 1rem;
+	box-shadow: 6px 2px 5px 1px rgba(0,0,0,0.12);
+}
+.bt-home button:hover{
+	background-color: #4300FF;
+	color: white;
+	box-shadow: 6px 2px 8px 1px rgba(0,0,0,0.22);
+}
+.op-home i:hover{
+	color: #FFD500;
+	font-size: 2.5rem;
+}
+.bt-home-2 button{
+	background-color: #FFD500;
+	margin-top: 2rem;
+	width: 100%;
+	padding: 0.5rem;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 1rem;
+	font-size: 2rem;
+	box-shadow: 6px 2px 5px 1px rgba(0,0,0,0.12);
+}
+.bt-home-2 button:hover{
+	background-color: #4300FF;
+	color: white;
+	box-shadow: 6px 2px 8px 1px rgba(0,0,0,0.22);
+}

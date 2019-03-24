@@ -189,5 +189,27 @@ session_start();
 				$('#e_cat').foundation('close');
 			};
 		});
+		$(document).on('click', '#elimina', function(event){
+			var r = confirm('Esta seguro que desea eliminar cliente?');
+			if (r == true) {
+				var cell = $(this).parent();
+			var row = cell.parent();
+			var cell_id = row.children('.cat_id');
+			var cat_id = cell_id.attr('id');
+				var operacion = 'delite';
+				//alert(cliente_id+', '+operacion);
+				$.ajax({
+					url: '../core/categorias.php',
+					type: 'POST',
+					data:{
+						cat_id : cat_id,
+						operacion : operacion,
+					},
+					success: function(data){
+						alert(data);
+					},
+				});
+			};
+		});
 	})
 </script>

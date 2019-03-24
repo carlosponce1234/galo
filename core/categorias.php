@@ -49,6 +49,19 @@ if (isset($operacion)){
 
 
 				break;
+				case 'delite':
+					$cat_id = $_POST['cat_id'];
+			if (isset($cat_id)){
+				$sql = "DELETE FROM `categoria` WHERE `cat_id` = '$cat_id'";
+					if($mysqli->query($sql) === true){
+    				echo "Operacion realizada con exito.";
+				} else{
+   				echo "ERROR: No se pudo realizar operacion. " . $mysqli->error;
+					}
+			}else{
+				echo "ERORR: NO SE PUEDE LERR EL ID";
+			}
+					break;	
 		default:
 			# code...
 			break;
