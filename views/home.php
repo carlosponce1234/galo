@@ -18,6 +18,8 @@ session_start();
 		$sql3 =" SELECT * FROM categoria";
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
+
+    include 'subir.php';
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -52,7 +54,7 @@ session_start();
   					<div class="cell medium-2 medium-offset-2 bt-home" >
   						<?php if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
   							# code...
-  							echo "<button><i class='icon-cloud-upload'> SUBIR ARCHIVO</i></button>";
+  							echo "<button id='file'><i class='icon-cloud-upload'> SUBIR ARCHIVO</i></button>";
   						} ?>
   						
   					</div>
@@ -152,5 +154,8 @@ session_start();
 			//alert(anio);
 			window.location.assign(url);
 		});
+    $(document).on('click', '#file',function(event){
+      $('#e_subir').foundation('open');
+    });
 	})
 </script>

@@ -221,5 +221,22 @@ session_start();
 		$(document).on('click', '#file',function(event){
 			$('#e_subir').foundation('open');
 		});
+		$(document).on('keyup' , '#buscar_user', function(event){
+			var input = $('#buscar_user');
+  			var filter = input.val().toUpperCase();
+  			var table = $('#mytable');
+  			var tr = $('#mytable tr');
+  			//alertify.log(filter);
+  			for (var i = 0; i< tr.length;  i++) {
+  				td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+		});
 	})
 </script>

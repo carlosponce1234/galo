@@ -151,6 +151,15 @@ session_start();
 			<div class="grid-x grid-padding-x">
 				<div class="cell medium-3 medium-offset-9" >
 					<div style="margin-top: 1rem;">
+						<div style = "font-size:16px; color:#cc0000;">
+							<?php  if (isset($mensaje)) {
+								echo $mensaje;
+							}else{
+								if (isset($error)) {
+									echo $error;
+								};
+							};
+							 ?></div>
 						<a  class="guardar" href="papelera.php"><i class="icon-bin"> ver papelera</i></a>
 					</div>
 				</div>
@@ -213,7 +222,7 @@ session_start();
 	$(document).ready(function(){
 		$(document).on('click', '#ver_pdf', function(event){
 			var dir = $(this).parent().attr('id');
-			var url = "../"+dir+".pdf";
+			var url = "../"+dir;
 			//alert(url);
 			window.open(url,'_blank');
 		});

@@ -1,4 +1,5 @@
 <?php 
+require '../core/conexion.php';
 		$sql4 =" SELECT * FROM categoria";
 		$result4=$mysqli->query($sql4);
 		$row4 = $result4->fetch_assoc();
@@ -6,12 +7,43 @@
 		$sql5 =" SELECT * FROM cliente";
 		$result5=$mysqli->query($sql5);
 		$row5 = $result5->fetch_assoc();
+
+		if (!empty($_POST)) {
+			# code...
+		$nombre = mysqli_real_escape_string($mysqli,$_POST['doc_numliq']);
+		$anio = mysqli_real_escape_string($mysqli,$_POST['anio']);
+		$cliente = mysqli_real_escape_string($mysqli,$_POST['cliente']);
+		$cat = mysqli_real_escape_string($mysqli,$_POST['cat']);
+		$user_id = mysqli_real_escape_string($mysqli,$_POST['user_id']);
+		$error = '';
+		$mensaje = '';
+
+		 $temp=$_FILES['archivo']['tmp_name'];
+		 $type = $_FILES['archivo']['type'];     
+                $directorio = "../UPLOADS";  
+                $nombre_nomina = $_FILES['archivo']['name'];   
+                $url=$directorio . "/" . $nombre.".pdf";
+                $doc_ruta = "UPLOADS/".  $nombre.".pdf";
+
+         if (move_uploaded_file($temp,$url))  
+                {         
+                #echo $nombre." ".$anio." ".$cliente." ".$cat.;              
+                $sql6 = "INSERT INTO `documentos` (`doc_id`, `doc_numliq`, `doc_ruta`, `doc_cat`, `doc_cliente`, `doc_usuario`, `doc_anio`, `doc_papelera`, `doc_timestamp`) VALUES (NULL, '$nombre', '$doc_ruta', '$cat', '$cliente', '$user_id', '$anio', '0', CURRENT_TIMESTAMP)";
+                if($mysqli->query($sql6) === true){
+                	$mensaje = "El archivo se ha subido correctamente";
+				} else{
+					$error = "ERROR: No se pudo realizar operacion. ". $mysqli->error;
+					}
+                     
+                }        
+
+		};
  ?>
  <div class="reveal" id="e_subir" data-reveal data-animation-in="slidein">
   	<h5>Subir Archivo</h5>
   	<hr>
-  	<form action="" method="POST" enctype="multipart/form-data">
-  		<input style="display: none;" type="text" value="<?php echo $user_id; ?>">
+  	<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+  		<input id="user_id" name="user_id" style="display: none;" type="text" value="<?php echo $user_id; ?>">
   		<label for="doc_numliq">Nombre del archivo</label>
   		<input type="text" id="doc_numliq" name="doc_numliq">
   		<label for="Cliente">Cliente</label>
@@ -56,7 +88,7 @@
   		<select name="cat" id="cat">
 			<option disabled selected >Elegir Categoria</option>
 			<?php 
-				foreach ($result3 as $key => $v) {
+				foreach ($result4 as $key => $v) {
 					echo "<option id=".$v['cat_id']." value ='".$v['cat_id']."'>".$v['cat_nombre']."</option>";
 					};		
 					 ?>

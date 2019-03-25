@@ -24,6 +24,8 @@ session_start();
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
 
+		include 'subir.php';
+
 
  ?>
  <!doctype html>
@@ -49,7 +51,7 @@ session_start();
       				<?php 
 						 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
   							# code...
-  							echo "<button class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
+  							echo "<button id='file' class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
   						}; 
 				  	?>	
       				<ul class="nav-bar">	
@@ -256,6 +258,10 @@ session_start();
 			$('#mail').val('');
 			$('#pass').val('');
 			$('#pass1').val('');
+		});
+
+		$(document).on('click', '#file',function(event){
+			$('#e_subir').foundation('open');
 		});
 
 	})

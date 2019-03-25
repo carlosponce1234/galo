@@ -48,7 +48,7 @@ session_start();
       				<?php 
 						 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
   							# code...
-  							echo "<button class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
+  							echo "<button id='file' class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
   						}; 
 				  	?>	
       				<ul class="nav-bar">	
@@ -286,6 +286,9 @@ session_start();
       }
     } 
   }
-		})
+		});
+		$(document).on('click', '#file',function(event){
+			$('#e_subir').foundation('open');
+		});
 	})
 </script>
