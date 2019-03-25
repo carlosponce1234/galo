@@ -22,6 +22,8 @@ session_start();
 		$sql3 =" SELECT * FROM permisos";
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
+
+		include 'subir.php';
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">

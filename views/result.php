@@ -55,7 +55,7 @@ session_start();
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
 
-		
+		include 'subir.php';
  ?>
   <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -80,7 +80,7 @@ session_start();
       				<?php 
 						 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
   							# code...
-  							echo "<button class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
+  							echo "<button id='file' class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
   						}; 
 				  	?>
 				  <div class="nav-bar-result">		
@@ -218,11 +218,63 @@ session_start();
 			window.open(url,'_blank');
 		});
 		$(document).on('click', '#elimina', function(event){
-			var cell = $(this).parent();
+			
+			var r = confirm('Seguro desea enviar documento a la papelera?');
+			if (r == true) {
+				var cell = $(this).parent();
 			var row = cell.parent();
-			var cell_id = row.children('.cat_id');
-			var cat_id = cell_id.attr('id');
-			var operacion = 'fill';
-		})
+			var cell_id = row.children('.doc_id');
+			var doc_id = cell_id.attr('id');
+			var operacion = 'papelera';
+			//alert(doc_id+', '+operacion);
+				$.ajax({
+				url: '../core/documentos.php',
+				type: 'POST',
+				data: {
+					doc_id : doc_id,
+					operacion: operacion,
+				},
+				success: function(data){
+					alert(data);
+					row.remove();
+				}
+			});
+			};
+		});
+		$(document).on('keyup' , '#buscar_user', function(event){
+			var input = $('#buscar_user');
+  			var filter = input.val().toUpperCase();
+  			var table = $('#mytable');
+  			var tr = $('#mytable tr');
+  			//alertify.log(filter);
+  			for (var i = 0; i< tr.length;  i++) {
+  				td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+		});
+		$(document).on('click', '#bus-result', function(event){
+			var doc_nu = $('#doc_numliq').val().legth;
+      var anio = $('#anio').val();
+      var cat = $('#cat').val();
+      //alert(doc_nu);
+      if (doc_nu === undefined) {
+        var url = 'result.php?anio='+anio+'&cat='+cat+'';
+      } else {
+        var doc_numliq = $('#doc_numliq').val();
+        var url = 'result.php?doc_numliq='+doc_numliq+'&anio='+anio+'&cat='+cat+'';
+      };
+			//alert(anio);
+			window.location.assign(url);
+		});
+
+		$(document).on('click', '#file',function(event){
+			$('#e_subir').foundation('open');
+		});
 	})
 </script>
