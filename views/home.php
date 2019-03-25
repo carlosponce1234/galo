@@ -141,18 +141,25 @@ session_start();
 <script>
 	$(document).ready(function(){
 		$(document).on('click', '#search-home', function(event){
-			var doc_nu = $('#doc_numliq').val().legth;
+			var doc_nu = $('#doc_numliq').val();
       var anio = $('#anio').val();
       var cat = $('#cat').val();
+      var tmp = $.trim($('#doc_numliq').val()).length
       //alert(doc_nu);
       if (doc_nu === undefined) {
         var url = 'result.php?anio='+anio+'&cat='+cat+'';
       } else {
-        var doc_numliq = $('#doc_numliq').val();
+        if (tmp<=0) {
+          var url = 'result.php?anio='+anio+'&cat='+cat+'';
+        } else{
+          var doc_numliq = $('#doc_numliq').val().toUpperCase();
         var url = 'result.php?doc_numliq='+doc_numliq+'&anio='+anio+'&cat='+cat+'';
+        } ;
+        
       };
-			//alert(anio);
-			window.location.assign(url);
+      //alert(url);
+      //alert(anio);
+      window.location.assign(url);
 		});
     $(document).on('click', '#file',function(event){
       $('#e_subir').foundation('open');

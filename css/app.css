@@ -64,7 +64,7 @@ form .logbtn{
 	margin-right: 0.5rem;
 }
 .barra_lat {
-	margin-top: 8rem;
+	margin-top: 6rem;
 	align-content: center;
 }
 .btn{
@@ -353,4 +353,12 @@ form .logbtn{
 	margin-top: 0.5rem;
 	width: 100%;
 	cursor: pointer;
+}
+.op-subir i{
+	color: white;
+	font-size: 2.3rem;
+}
+.op-subir p{
+	margin-bottom: 0;
+	text-align: center;
 }

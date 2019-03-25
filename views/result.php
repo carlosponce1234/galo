@@ -15,22 +15,22 @@ session_start();
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
 
-		
 		$doc_anio = $_GET['anio'];
 		$cat = $_GET['cat'];
 
+	
 		if (isset($_GET['doc_numliq'])) {
 			# code...
 			$doc_numliq = $_GET['doc_numliq'];
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos WHERE doc_nunliq = '$doc_numliq' AND doc_anio = '$doc_anio' AND doc_papelera = '0'";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq = '$doc_numliq' AND doc_anio = '$doc_anio' AND doc_papelera = '0'";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 
 			} else {
-				$sql2 = "SELECT	* FROM	documentos WHERE doc_nunliq = '$doc_numliq' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0'";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq = '$doc_numliq' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0'";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -45,7 +45,7 @@ session_start();
 				$row2 = $result2->fetch_assoc();
 			} else {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -55,7 +55,7 @@ session_start();
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
 
-		include 'subir.php';
+		
  ?>
   <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -76,6 +76,9 @@ session_start();
 	<div class="grid-container fluid">
 		<div class="grid-x grid-padding-x">
 			<div class="cell medium-3 align-center"style="background-color: #0000AB; height: 50rem;">
+				<div class="cell medium-12 op-home">
+      					<p style="text-align: left; padding-top: 1rem;"><a href="configuracion.php"><i class="icon-cog"></i></a></p>
+      				</div>
       			<div class="barra_lat">
       				<?php 
 						 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
@@ -183,7 +186,7 @@ session_start();
 							<th>Categoria</th>
 							<th>Acciones</th>
 						</thead>
-						<tbody id="user_table">
+						<tbody id="user_table" style="overflow-y: scroll; height: 30rem;">
 							<?php 
 							if ($rows2 > 0) {
 								foreach ($result2 as $key => $v) {
@@ -213,6 +216,7 @@ session_start();
 		</div>
 	</div>
 </body>
+<?php include 'subir.php'; ?>
   <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>
@@ -268,22 +272,32 @@ session_start();
   }
 		});
 		$(document).on('click', '#bus-result', function(event){
-			var doc_nu = $('#doc_numliq').val().legth;
+			var doc_nu = $('#doc_numliq').val();
       var anio = $('#anio').val();
       var cat = $('#cat').val();
+      var tmp = $.trim($('#doc_numliq').val()).length
       //alert(doc_nu);
       if (doc_nu === undefined) {
         var url = 'result.php?anio='+anio+'&cat='+cat+'';
       } else {
-        var doc_numliq = $('#doc_numliq').val();
+      	if (tmp<=0) {
+      		var url = 'result.php?anio='+anio+'&cat='+cat+'';
+      	} else{
+      		var doc_numliq = $('#doc_numliq').val().toUpperCase();
         var url = 'result.php?doc_numliq='+doc_numliq+'&anio='+anio+'&cat='+cat+'';
+      	} ;
+        
       };
+      //alert(url);
 			//alert(anio);
 			window.location.assign(url);
 		});
 
 		$(document).on('click', '#file',function(event){
 			$('#e_subir').foundation('open');
+		});
+		$(document).on('click', '#cancelar-file',function(event){
+			$('#e_subir').foundation('close');
 		});
 	})
 </script>
