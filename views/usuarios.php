@@ -14,10 +14,22 @@ session_start();
 		$result=$mysqli->query($sql);
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
+		
+		if ($row['user_cliente'] == 1) {
+			# code...
 
 		$sql2 ="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id";
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
+		} else {
+			$cli=$row['user_cliente'];
+		$sql2 ="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id WHERE user_cliente = '$cli'";
+		$result2=$mysqli->query($sql2);
+		$row2 = $result2->fetch_assoc();
+			# code...
+		}
+		
+
 
 		$sql3 =" SELECT * FROM permisos";
 		$result3=$mysqli->query($sql3);
