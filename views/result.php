@@ -211,8 +211,11 @@ session_start();
 								};
 							};
 							 ?></div>
-							 <?php if ($row['user_tipo'] != 'Cliente'||$row['user_tipo'] != 'Sub-usuario(cliente)') {
-										echo "<a  class='guardar' href='papelera.php?anio=2019&cat=0'><i class='icon-bin'> ver papelera</i></a>";
+							 <?php if ($row['user_tipo'] != 'Cliente') {
+							 	if ($row['user_tipo'] != 'Sub-usuario(cliente)') {
+							 		# code...
+							 		echo "<a  class='guardar' href='papelera.php?anio=2019&cat=0'><i class='icon-bin'> ver papelera</i></a>";
+							 	};		
 									}; ?>
 					</div>
 				</div>
