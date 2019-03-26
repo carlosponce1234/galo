@@ -15,7 +15,8 @@ session_start();
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
 
-		$doc_anio = $_GET['anio'];
+		if ($row['user_cliente'] == 1) {
+			$doc_anio = $_GET['anio'];
 		$cat = $_GET['cat'];
 
 	
@@ -51,6 +52,48 @@ session_start();
 				$row2 = $result2->fetch_assoc();
 			}
 		};
+
+		} else {
+			$cli = $row['user_cliente'];
+			$doc_anio = $_GET['anio'];
+		$cat = $_GET['cat'];
+
+	
+		if (isset($_GET['doc_numliq'])) {
+			# code...
+			$doc_numliq = $_GET['doc_numliq'];
+			if ($cat == 0) {
+				# code...
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq = '$doc_numliq' AND doc_anio = '$doc_anio' AND doc_papelera = '0'  AND doc_cliente = '$cli'";
+				$result2=$mysqli->query($sql2);
+				$rows2 = $result2->num_rows;
+				$row2 = $result2->fetch_assoc();
+
+			} else {
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq = '$doc_numliq' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0' AND doc_cliente = '$cli' ";
+				$result2=$mysqli->query($sql2);
+				$rows2 = $result2->num_rows;
+				$row2 = $result2->fetch_assoc();
+			};
+			
+		} else {
+			if ($cat == 0) {
+				# code...
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0 AND doc_cliente = '$cli'";
+				$result2=$mysqli->query($sql2);
+				$rows2 = $result2->num_rows;
+				$row2 = $result2->fetch_assoc();
+			} else {
+				# code...
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0 AND doc_cliente = '$cli'";
+				$result2=$mysqli->query($sql2);
+				$rows2 = $result2->num_rows;
+				$row2 = $result2->fetch_assoc();
+			}
+		};
+		};
+		
+		
 		$sql3 =" SELECT * FROM categoria";
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
@@ -209,7 +252,7 @@ session_start();
 									<td id=".$v['doc_numliq']." class='doc_nombre'><i class='icon-file-pdf'></i> ".$v['doc_numliq']."</td>
 									<td id=".$v['doc_anio']." class='doc_año'>".$v['doc_anio']."</td>
 									<td id=".$v['doc_cat']." class='doc_cat'>".$v['cat_nombre']."</td>
-									<td id=".$v['doc_ruta'].">
+									<td id='".$v['doc_ruta']."'>
 									<button id='ver_pdf' class='button editar small'>
 									<i class='icon-cloud-download'></i></button>
 								    <button ".$btn." id='elimina' class='button desactiva small'><i class='icon-bin'></i></button>
