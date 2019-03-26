@@ -14,12 +14,16 @@ if (isset($operacion)) {
 		$permiso = $_POST['user_permiso'];
 		$estado = $_POST['user_estado'];
 
+		if ($nombre == ' ' || $mail == ''|| $pass == ' ' || $cliente == ' ' || $tipo== ' ' || $permiso==' ' || $estado ==' ' ) {
+			echo "ERROR: No se pudo realizar operacion.  Hay campos vacios en el formulario";
+		} else {
 			$sql = "INSERT INTO `usuarios` (`user_id`, `user_monbre`, `user_mail`, `user_pass`, `user_tipo`, `user_cliente`, `user_permiso`, `user_estado`, `user_timestamp`) VALUES (NULL, '$nombre', '$mail', '$pass', '$tipo', '$cliente', '$permiso', '$estado', CURRENT_TIMESTAMP)";
 			if($mysqli->query($sql) === true){
     				echo "Usuario creado con exito.";
 				} else{
    				echo "ERROR: No se pudo realizar operacion. " . $mysqli->error;
-					}
+					};
+						};
 			break;
 		case 'fill':
 			# code...

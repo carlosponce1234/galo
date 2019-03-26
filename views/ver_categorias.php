@@ -18,8 +18,11 @@ session_start();
 		$sql2 ="SELECT * FROM categoria";
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
-
-		include 'subir.php';
+		
+	if ($row['user_permiso'] == 3 ||$row['user_permiso'] == 5 ) {
+			# code...
+			header("Location: home.php");
+		};
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -54,7 +57,7 @@ session_start();
 							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
 						<li><a href="clientes.php"><button><span>
 							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></a></li>
-						<li><a href="categorias.php"><button><span>
+						<li><a href="categorias.php"><button style="color: yellow;"><span>
 							<img src="../img/settings.png" alt="control"></span> Categorias </button></a></li>	
       				</ul>	
       				</div>
@@ -84,7 +87,7 @@ session_start();
 					<div class="grid-x grid-margin-x acciones">
 						<div class="cell medium-7 medium-offset-1">
 							<div id="wraper">
-							<input type="text" id="buscar_user" placeholder=" Buscar usuario">
+							<input type="text" id="buscar_user" placeholder=" Buscar categoria">
 							<button class="buscar_btn"><i class="icon-search"></i></button>
 							</div>
 						</div>
@@ -134,6 +137,7 @@ session_start();
 		<button  class="reset" id="cancelar"><i class="icon-cross"></i>Cancelar</button>	
   	</form>
   </div>
+  <?php 		include 'subir.php'; ?>
   <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>

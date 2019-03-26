@@ -24,13 +24,13 @@ session_start();
 			$doc_numliq = $_GET['doc_numliq'];
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq = '$doc_numliq' AND doc_anio = '$doc_anio' AND doc_papelera = '0'";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq = '$doc_numliq' AND doc_anio = '$doc_anio' AND doc_papelera = '1'";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 
 			} else {
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq = '$doc_numliq' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0'";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq = '$doc_numliq' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '1'";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -39,13 +39,13 @@ session_start();
 		} else {
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 1";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 			} else {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 1";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -139,7 +139,7 @@ session_start();
 		<div class="cell medium-9">
 			<div class="grid-x grid-padding-x cabecera">
 				<div class="cell medium-5">
-					<h4>RESULTADOS DE BUSQUEDA</h4>		
+					<h4>PAPELERA</h4>		
 				</div>
 				<div class="cell medium-4">
 					<p>Usuario: <?php if ($rows>0) {
@@ -168,9 +168,6 @@ session_start();
 								};
 							};
 							 ?></div>
-							 <?php if ($row['user_tipo'] != 'Cliente'||$row['user_tipo'] != 'Sub-usuario(cliente)') {
-										echo "<a  class='guardar' href='papelera.php?anio=2019&cat=0'><i class='icon-bin'> ver papelera</i></a>";
-									}; ?>
 					</div>
 				</div>
 			</div>

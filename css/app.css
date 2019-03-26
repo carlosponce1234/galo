@@ -77,7 +77,8 @@ form .logbtn{
 	border-radius: 5px;
 	font-size: 1.2rem;
 	margin-bottom: 2rem;
-	font-weight: bolder;;
+	font-weight: bolder;
+	cursor: pointer;
 }
 .btn span i{
 	margin-right: 1rem;
@@ -95,6 +96,15 @@ form .logbtn{
 	font-weight: bold;
     margin-bottom: 1.5rem;
     height: 2.5rem;
+    cursor: pointer;
+}
+.nav-bar li button:hover{
+	color: yellow;
+	font-size: 1.3rem;
+	font-weight: bold;
+    margin-bottom: 1.5rem;
+    height: 2.5rem;
+    cursor: pointer;
 }
 .nav-bar li button span{
 	background-color: yellow;
@@ -102,11 +112,13 @@ form .logbtn{
 	color: black;
 	padding:0.5rem;
 	margin-right: 0.5rem
+	cursor: pointer;
 }
 .nav-bar li button span img{
 	width: 1.6rem;
 	height: 1.6rem;
-	padding-bottom: 0.2rem
+	padding-bottom: 0.2rem;
+	cursor: pointer;
 }
 .etiqueta{
 	margin-top: 2rem;

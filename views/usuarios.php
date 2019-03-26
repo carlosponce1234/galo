@@ -22,8 +22,12 @@ session_start();
 		$sql3 =" SELECT * FROM permisos";
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
-
-		include 'subir.php';
+		
+	if ($row['user_permiso'] == 3 ||$row['user_permiso'] == 5 ) {
+			# code...
+			header("Location: home.php");
+		};
+		
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -54,12 +58,14 @@ session_start();
       				<ul class="nav-bar">	
 						<li><a href="home.php"><button><span>
 							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
-						<li><a href="configuracion.php"><button><span>
+						<li><a href="configuracion.php"><button style="color: yellow;"><span>
 							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
-						<li><a href="clientes.php"><button><span>
-							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></a></li>
-						<li><a href="categorias.php"><button><span>
-							<img src="../img/settings.png" alt="control"></span> Categorias </button></a></li>	
+							<?php if ($row['user_tipo']=='Administrador' || $row['user_tipo']=='Colaborador') {
+								echo( "<li><a href='clientes.php'><button><span>
+							<img src='../img/add-clientes-06.png' alt='control'></span> Agregar Clientes </button></a></li>
+						<li><a href='categorias.php'><button><span>
+							<img src='../img/settings.png' alt='control'></span> Categorias </button></a></li>");
+							} ?>
       				</ul>	
       				</div>
     			</div>
@@ -165,6 +171,7 @@ session_start();
 		<button  class="reset" id="cancelar"><i class="icon-cross"></i>Cancelar</button>	
   	</form>
   </div>
+  <?php 		include 'subir.php'; ?>
    <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>

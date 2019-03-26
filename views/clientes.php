@@ -14,7 +14,11 @@ session_start();
 		$result=$mysqli->query($sql);
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
-
+		
+	if ($row['user_permiso'] == 3 ||$row['user_permiso'] == 5 ) {
+			# code...
+			header("Location: home.php");
+		};
 		
  ?>
   <!doctype html>
@@ -48,7 +52,7 @@ session_start();
 							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
 						<li><a href="configuracion.php"><button><span>
 							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
-						<li><a href="clientes.php"><button><span>
+						<li><a href="clientes.php"><button style="color: yellow;"><span>
 							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></a></li>
 						<li><a href="categorias.php"><button><span>
 							<img src="../img/settings.png" alt="control"></span> Categorias </button></a></li>	
@@ -117,7 +121,7 @@ session_start();
 						</div>
 						<div class="cell medium-3 medium-offset-4 ">
 							<div class="input">
-								<button class="guardar" id="guardar"> Guardar Usuario </button>	   	
+								<button class="guardar" id="guardar"> Guardar  </button>	   	
 						    </div>
 						</div>
 						<div class="cell medium-3 ">

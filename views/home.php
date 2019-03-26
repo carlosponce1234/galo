@@ -19,7 +19,6 @@ session_start();
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
 
-    include 'subir.php';
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -133,6 +132,7 @@ session_start();
   		</div>
   	</div>
   </body>
+  <?php     include 'subir.php'; ?>
   <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>

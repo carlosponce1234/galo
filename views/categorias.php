@@ -15,8 +15,10 @@ session_start();
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
 
-		include 'subir.php';
-
+		if ($row['user_permiso'] == 3 ||$row['user_permiso'] == 5 ) {
+			# code...
+			header("Location: home.php");
+		};
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -51,7 +53,7 @@ session_start();
 							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
 						<li><a href="clientes.php"><button><span>
 							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></a></li>
-						<li><a href="categorias.php"><button><span>
+						<li><a href="categorias.php"><button style="color: yellow;"><span>
 							<img src="../img/settings.png" alt="control"></span> Categorias </button></a></li>	
       				</ul>	
       				</div>
@@ -59,7 +61,7 @@ session_start();
     			<div class="cell medium-9">
     				<div class="grid-x grid-padding-x cabecera">
 							<div class="cell medium-5">
-							   <h4>CREAR NUEVO CLIENTE</h4>		
+							   <h4>CREAR  CATEGORIA</h4>		
 						    </div>
 						    <div class="cell medium-4">
 						    	<p>Usuario: <?php if ($rows>0) {
@@ -108,7 +110,7 @@ session_start();
 						</div>
 						<div class="cell medium-3 medium-offset-4 ">
 							<div class="input">
-								<button class="guardar" id="guardar"> Guardar Usuario </button>	   	
+								<button class="guardar" id="guardar"> Guardar  </button>	   	
 						    </div>
 						</div>
 						<div class="cell medium-3 ">
@@ -121,6 +123,9 @@ session_start();
 		</div>
 	</div>
 </body>
+<?php 
+		include 'subir.php';
+		 ?>
 <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>

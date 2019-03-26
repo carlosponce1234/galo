@@ -11,10 +11,15 @@ session_start();
 		$user_name = $_SESSION['user_name'] ;
 		$user_permiso =	$_SESSION['user_permisp'];
 
-		$sql="SELECT * FROM usuarios Where user_id='$user_id'";
+		$sql="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id Where user_id='$user_id'";
 		$result=$mysqli->query($sql);
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
+
+		if ($row['user_permiso'] == 3 ||$row['user_permiso'] == 5 ) {
+			# code...
+			header("Location: home.php");
+		};
 
 		$sql2="SELECT * FROM cliente";
 		$result2=$mysqli->query($sql2);
@@ -24,7 +29,6 @@ session_start();
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
 
-		include 'subir.php';
 
 
  ?>
@@ -57,12 +61,14 @@ session_start();
       				<ul class="nav-bar">	
 						<li><a href="home.php"><button><span>
 							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
-						<li><a href="configuracion.php"><button><span>
+						<li><a href="configuracion.php"><button style="color: yellow;"><span>
 							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
-						<li><a href="clientes.php"><button><span>
-							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></a></li>
-						<li><a href="categorias.php"><button><span>
-							<img src="../img/settings.png" alt="control"></span> Categorias </button></a></li>	
+							<?php if ($row['user_tipo']=='Administrador' || $row['user_tipo']=='Colaborador') {
+								echo( "<li><a href='clientes.php'><button><span>
+							<img src='../img/add-clientes-06.png' alt='control'></span> Agregar Clientes </button></a></li>
+						<li><a href='categorias.php'><button><span>
+							<img src='../img/settings.png' alt='control'></span> Categorias </button></a></li>");
+							} ?>
       				</ul>	
       				</div>
     			</div>
@@ -146,10 +152,14 @@ session_start();
 								   <select name="cliente" id="cliente">
 								   	<option value="0" disabled selected>Elegir empresa o cliente</option>
 								   	<?php 
+								   	if ($row['user_tipo'] == 'Cliente' ||$row['user_tipo'] == 'Sub-usuario(cliente)') {
+								   		echo "<option id=".$row['user_cliente']." value ='".$row['user_cliente']."'>".$row['cliente_nombre']."</option>";
+								   	} else {
 								   		foreach ($result2 as $key => $v) {
 			
 											echo "<option id=".$v['cliente_id']." value ='".$v['cliente_id']."'>".$v['cliente_nombre']."</option>";
-										};		
+										};	
+								   	};	
 								   	 ?>
 								   </select>	
 						    	</div>
@@ -162,10 +172,18 @@ session_start();
 						<div class="cell medium-5">
 							<div class="input">
 								   <select name="tipo_usuario" id="tipo_usuario">
+								   	<?php 
+								   		if ($row['user_tipo'] == 'Cliente' ||$row['user_tipo'] == 'Sub-usuario(cliente)' ) {
+								   			$tt = 'disabled';
+								   		} else {
+								   			$tt = ' ';
+								   		}
+								   		
+								   	 ?>
 								   	<option value="0" disabled selected>Eligir tipo de usuario</option>
-								   	<option value="Administrador">Administrador</option>
-								   	<option value="Colaborador">Colaborador</option>
-								   	<option value="Cliente">Cliente</option>
+								   	<option <?php echo $tt ?> value="Administrador">Administrador</option>
+								   	<option <?php echo $tt ?> value="Colaborador">Colaborador</option>
+								   	<option <?php echo $tt ?> value="Cliente">Cliente</option>
 								   	<option value="Sub-usuario(cliente)">Sub-usuario(cliente)</option>
 								   </select>	
 						    	</div>
@@ -178,13 +196,17 @@ session_start();
 						</div>
 						<div class="cell medium-5">
 							<div class="input">
-								   <select name="permisos" id="permisos">
-								   	<option value="0" disabled selected>Asignar permisos</option>
 								   	<?php 
+								   	if ($row['user_tipo'] == 'Cliente' ||$row['user_tipo'] == 'Sub-usuario(cliente)' ) {
+								   		echo "<select disabled name='permisos' id='permisos'>";
+								   	echo "<option value='5' selected>Buscar</option>";
+								   	} else {
+								   		echo "<select name='permisos' id='permisos'>";
+								   	echo "<option value='0' disabled selected>Asignar permisos</option>";
+								   	};
 								   		foreach ($result3 as $key => $v) {
-			
-											echo "<option id=".$v['permisos_id']." value ='".$v['permisos_id']."'>".$v['permisos_desc']."</option>";
-										};		
+								   				echo "<option id=".$v['permisos_id']." value ='".$v['permisos_id']."'>".$v['permisos_desc']."</option>";
+								   			};	
 								   	 ?>
 								   </select>	
 						    	</div>
@@ -217,7 +239,7 @@ session_start();
 				</div>
 			</div>
 	</body>
-
+<?php 		include 'subir.php'; ?>
   <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>
