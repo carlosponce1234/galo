@@ -15,7 +15,7 @@ session_start();
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
 
-		$sql2 ="SELECT * FROM usuarios";
+		$sql2 ="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id";
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
 
@@ -125,7 +125,7 @@ session_start();
 												<td id=".$v['user_id']." class='user_id'>".$v['user_id']."</td>
 												<td id=".$v['user_monbre']." class='user_nombre'>".$v['user_monbre']."</td>
 												<td id=".$v['user_mail']." class='user_mail'>".$v['user_mail']."</td>
-												<td id=".$v['user_cliente']." class='user_cliente'>".$v['user_cliente']."</td>
+												<td id=".$v['user_cliente']." class='user_cliente'>".$v['cliente_nombre']."</td>
 												<td id=".$v['user_tipo']." class='user_tipo'>".$v['user_tipo']."</td>
 												<td id=".$v['user_estado']." class='user_estado'>".$est."</td>
 												<td>
