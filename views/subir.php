@@ -44,7 +44,7 @@ require '../core/conexion.php';
   	<hr>
   	<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
   		<input id="user_id" name="user_id" style="display: none;" type="text" value="<?php echo $user_id; ?>">
-  		<label for="doc_numliq">Nombre del archivo</label>
+  		<label for="doc_numliq">Numero de poliza</label>
   		<input type="text" id="doc_numliq" name="doc_numliq">
   		<label for="Cliente">Cliente</label>
   		<select name="cliente" id="cliente">
