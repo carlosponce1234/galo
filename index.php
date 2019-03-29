@@ -43,14 +43,20 @@
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="font/flaticon.css">
+     <link rel="stylesheet" href="font/style.css">
+    <!--[if lt IE 8]><!-->
+    <link rel="stylesheet" href="font/ie7/ie7.css">
+    <!--<![endif]-->
   </head>
-  <body style="background-color: #4300FF;">
+  <body style="background-image: url(img/fondo-home-06.png); background-position: top; background-repeat: no-repeat; background-size: cover;" >
   <div class="grid-container" id="login">
-  	<div class="grid-x grid-padding-x">
-  		<div class="cell medium-6 medium-offset-3">
+  	<div class="grid-x grid-padding-x align-center">
+  		<div class="cell medium-6 ">
   			<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
   				<div class="form-icons">
-    				<h4><img src="img/user.png" alt="usuario"></h4>
+    				<h4><img src="img/logo-08.png" alt="usuario"></h4>
+            <h5>"BIENVENIDO AL PORTAL DE DOCUMENTOS DE GALO Y ASOCIADOS"</h5>
+            <h4>Control de usuarios</h4>
     			<div class="input-group">
      				<span class="input-group-label">
        					 <i class="flaticon-login"></i>
@@ -68,6 +74,7 @@
 
 				<input style="background-color: #FF4E00"  type="submit" class= "button expanded logbtn" value= "INGRESAR">
   			</form>
+        <div><a style="color: white;" href="views/soporte.php"> <i class="icon-lock"></i>  Recuperar Contraseña</a></div>
   		</div>
   	</div>
   </div>

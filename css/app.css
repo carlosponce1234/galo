@@ -1,17 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700');
+ *{
+ 	font-family: 'Poppins', sans-serif;
+ }
+
 #login{
 	margin-top: 10%;
 }
 form .form-icons {
   text-align: center;
+  color: white;
 }
 
 form .form-icons h4 {
   margin-bottom: 1rem;
-  width: 13rem;
-  height: 13rem;
   align-content: center;
-  margin-left: 8rem;
+  color: white;
 }
+
+form .form-icons h5 {
+  margin-bottom: 1rem;
+  align-content: center;
+  color: white;
+  font-weight: bold;
+}
+
 
 form .form-icons .input-group-label {
   background-color: white;
@@ -64,20 +76,26 @@ form .logbtn{
 	margin-right: 0.5rem;
 }
 .barra_lat {
-	margin-top: 6rem;
+	margin-top: 4rem;
 	align-content: center;
 }
+.barra_lat h5{
+	color: white;
+	text-align: center;
+	font-size: 1.1rem;
+	margin-bottom: 2rem;
+}
 .btn{
-	width: 90%;
-	margin-left: 5%;
+	width: 60%;
 	padding: 0.5rem;
 	font-size: 0.8rem;
-	background-color: yellow;
+	background-color: #FFA900;
 	text-align: center;
-	border-radius: 5px;
-	font-size: 1.2rem;
-	margin-bottom: 2rem;
-	font-weight: bolder;
+	border-radius: 5rem;
+	float: right;
+	margin-top: 0.5rem;
+	font-size: 0.9rem;
+	font-weight: bold;
 	cursor: pointer;
 }
 .btn span i{
@@ -237,17 +255,42 @@ form .logbtn{
 	color: white;
     font-size: 1.3rem;
     margin-bottom: 0;
+    font-weight: bold;
 }
 .op-home i{
-	color: white;
-	font-size: 2.3rem;
+	margin-right: 0.8rem;
 }
-.op-home p{
-	margin-bottom: 0;
-	text-align: center;
+.op-home p a{
+	text-align: left;
+	color: white;
+	font-size: 0.9rem;
+}
+
+.op-home p a:hover{
+	text-align: left;
+	color: #FFA900;
+	font-size: 1.1rem;
 }
 .form-home{
-	margin-top: 5rem;
+	margin-top: 10rem;
+
+}
+.op-home2 i{
+	margin-right: 0.8rem;
+}
+.op-home2 p a{
+	text-align: left;
+	color: white;
+	font-size: 1.5rem;
+}
+
+.op-home2 p a:hover{
+	text-align: left;
+	color: #FFA900;
+	font-size: 2rem;
+}
+.form-home2{
+	margin-top: 10rem;
 
 }
 .form-home h3{
@@ -257,9 +300,11 @@ form .logbtn{
 .label-home {
 	margin-top: 1rem;
 	align-content: center;
+	font-weight: bold;
 }
 .label-home button{
 	color: white;
+	font-weight: bold;
 	font-size: 0.8rem;
 	background-color: #20007A;
 	border-radius: 1.5rem;
@@ -283,38 +328,35 @@ form .logbtn{
 	margin-top: 1rem;
 }
 .bt-home button{
-	background-color: #FFD500;
+	background-color: #FFA900;
 	padding: 0.5rem;
-	text-align: center;
 	cursor: pointer;
 	border-radius: 1rem;
 	font-size: 1rem;
-	box-shadow: 6px 2px 5px 1px rgba(0,0,0,0.12);
+}
+#file{
+	font-family: 'Poppins', sans-serif;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	text-align: center; 
 }
 .bt-home button:hover{
 	background-color: #4300FF;
 	color: white;
-	box-shadow: 6px 2px 8px 1px rgba(0,0,0,0.22);
-}
-.op-home i:hover{
-	color: #FFD500;
-	font-size: 2.5rem;
 }
 .bt-home-2 button{
-	background-color: #FFD500;
+	background-color: #FFA900;
 	margin-top: 2rem;
 	width: 100%;
 	padding: 0.5rem;
 	text-align: center;
 	cursor: pointer;
 	border-radius: 1rem;
-	font-size: 2rem;
-	box-shadow: 6px 2px 5px 1px rgba(0,0,0,0.12);
+	font-size: 1rem;
 }
 .bt-home-2 button:hover{
 	background-color: #4300FF;
 	color: white;
-	box-shadow: 6px 2px 8px 1px rgba(0,0,0,0.22);
 }
 .papelera i{
 	color: white;
@@ -336,9 +378,7 @@ form .logbtn{
 	font-size: 1.1rem;
 }
 .nav-bar-result button {
-	background-color: #20007A;
 	color: white;
-	border-radius: 1.2rem;
 	padding: 0.8rem;
 	text-align: center;
 	margin-top: 0.5rem;
@@ -346,25 +386,26 @@ form .logbtn{
 }
 .nav-bar-result input {
 	border-radius: 1.2rem;
-	padding: 0.8rem;
+	padding: 1rem;
 	text-align: center;
 	margin-top: 1rem;
 }
 .nav-bar-result select {
 	border-radius: 1.2rem;
-	padding-left: 0.5rem;
+	padding-left: 1rem;
 	text-align: center;
 	margin-top: 1rem;
 }
  #bus-result{
-	background-color: #FFD500;
-	color: black;
-	border-radius: 1.2rem;
-	padding: 0.8rem;
+	background-color: #20009B;
+	color: white;
 	text-align: center;
 	margin-top: 0.5rem;
-	width: 100%;
 	cursor: pointer;
+}
+#bus-result i{
+	background-color: #FEFEFE;
+	color: #20009B;
 }
 .op-subir i{
 	color: white;

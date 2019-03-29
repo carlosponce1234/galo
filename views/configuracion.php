@@ -16,7 +16,7 @@ session_start();
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
 
-		if ($row['user_permiso'] == 3 ||$row['user_permiso'] == 5 ) {
+		if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
 			# code...
 			header("Location: home.php");
 		};

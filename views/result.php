@@ -118,26 +118,27 @@ session_start();
 <body>
 	<div class="grid-container fluid">
 		<div class="grid-x grid-padding-x">
-			<div class="cell medium-3 align-center"style="background-color: #0000AB; height: 50rem;">
-				<div class="cell medium-12 op-home">
+			<div class="cell medium-3 align-center"style="background-color: #000000; height: 50rem;">
+				<div class="cell medium-12 op-home2">
       					<p style="text-align: left; padding-top: 1rem;">
 						<?php if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
 							$mostrar = 'display= "none";';
 							}; ?>
 							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
-      						 <a href="home.php"><i class="icon-home"></i></a></p>
+      						 <a href="home.php"><i class="icon-home"></i></a>
+							<?php 
+								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+  							# code...
+  							echo "<button id='file' class='btn'>Subir Archivo</button>";
+  						}; 	 ?>
+      						</p>
       				</div>
       			<div class="barra_lat">
-      				<?php 
-						 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
-  							# code...
-  							echo "<button id='file' class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
-  						}; 
-				  	?>
+      				<h5>Seleccione uno o mas criterios para su busqueda</h5>
 				  <div class="nav-bar-result">		
-  					<button>NUMERO DE DECLARACIÓN</button>
+  					<button>Nombre o referencia</button>
   					<input type="text" name="doc_numliqu" id="doc_numliq" placeholder="N° Liquidacion">
-  					<button>AÑO DE PUBLICACIÓN</button>
+  					<button>AÑo de publicación</button>
 									<select name="anio" id="anio">
 										<option value="2015">2015</option>
 										<option value="2016">2016</option>
@@ -166,7 +167,7 @@ session_start();
 										<option value="2039">2039</option>
 										<option value="2040">2040</option>
 									</select>	
-									<button>CATEGORIA</button>
+									<button>Categoría</button>
   									<select name="cat" id="cat">
   										<option value="0"  selected>Todas las categorias</option>
   										<?php 
@@ -175,7 +176,11 @@ session_start();
 										};		
 				  						 ?>
   									</select>
-  									<button id="bus-result"><i class="icon-search"></i> Buscar</button>
+  									<div class="button-group">
+  										<button class="button" id="bus-result">Buscar </button>
+  										<i class="icon-search button"></i>
+  									</div>
+  									
   				  </div>	
     			</div>
 			</div>

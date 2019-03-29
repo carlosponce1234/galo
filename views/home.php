@@ -35,41 +35,40 @@ session_start();
     <link rel="stylesheet" href="../font/ie7/ie7.css">
     <!--<![endif]-->
   </head>
-  <body style="background-color: #0000AB;">
+  <body style="background-image: url(../img/fondo-home-06.png); background-position: top; background-repeat: no-repeat; background-size: cover;">
   	<div class="grid-container fluid">
   		<div class="grid-y grid-padding-y">
   			<div class="cell medium-1">
-  				<div class="grid-x grid-padding-x align-middle home">
+  				<div class="grid-x grid-padding-x align-middle medium-margin-collapse home">
   					<div class="cell medium-1">
   						<div>
-  							<img style="height: 5rem; width: 5rem;" src="../img/user.png" alt="usuario">
+  							<img style="height: 5rem; width: 5rem;" src="../img/icono-galo-barco-09.png" alt="usuario">
   						</div>
   					</div>
-  					<div class="cell medium-5 text">
-  						<p>Usuario: <?php if ($rows>0) {
-							   	echo $row['user_monbre'];
+  					<div class="cell medium-6 text">
+  						<p> <?php if ($rows>0) {
+							   	echo $row['user_monbre'].' / '.$row['user_tipo'];
 							   }; ?></p>
   					</div>
   					<div class="cell medium-2 medium-offset-2 bt-home" >
   						<?php if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
   							# code...
-  							echo "<button id='file'><i class='icon-cloud-upload'> SUBIR ARCHIVO</i></button>";
+  							echo "<button id='file'> Subir un archivo</i></button>";
   						} ?>
   						
   					</div>
-  					<div class="cell medium-1 op-home">
-  						<p><a href="configuracion.php"><i class="icon-cog"></i></a></p>
+  					<div class="cell medium-3 op-home">
+  						<p><a href="configuracion.php">Configuracion <i class="icon-cog"></i></a><a href="../core/cerrar_secion.php"> Cerrar seción <i class="icon-enter"></i></a></p>
   					</div>
-  					<div class="cell medium-1  op-home">
-  						<p><a href="../core/cerrar_secion.php"><i class="icon-enter"></i></a></p>
-  					</div>
+  			<!--		<div class="cell medium-1  op-home">
+  						<p><a href="../core/cerrar_secion.php">Cerrar seción<i class="icon-enter"></i></a></p>
+  					</div>  -->
   				</div>
   			</div>
   			<div class="cell medium-10">
-  				<div class="grid-x grid-padding-x align-center-middle">
+  				<div class="grid-x grid-padding-x align-center">
   					<div class="cell medium-10 form-home">
-  						<h3>SELECCIONE UNO O MAS CRITERIOS PARA SU BUSQUEDA</h3>
-  						<div class="grid-x grid-padding-x  ">
+  						<div class="grid-x grid-padding-x align-center ">
   							<div class="cell medium-4">
   								<div class="label-home align-center">
   									<button>NUMERO DE DECLARACIÓN</button>
@@ -122,8 +121,8 @@ session_start();
   									</select>
   								</div>
   							</div>
-  							<div class="cell medium-8 medium-offset-2 bt-home-2">
-								<button id="search-home"><i class="icon-search"></i> Realizar Búsqueda</button>
+  							<div class="cell medium-2  bt-home-2">
+								<button id="search-home"><i class="icon-search"></i> &nbsp;&nbsp;&nbsp;Búsqueda</button>
 							</div>
   						</div>
   					</div>
