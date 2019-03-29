@@ -176,9 +176,9 @@ session_start();
 										};		
 				  						 ?>
   									</select>
-  									<div class="button-group">
-  										<button class="button" id="bus-result">Buscar </button>
-  										<i class="icon-search button"></i>
+  									<div class="btn-group">
+  										<p id="bus-result">Buscar </p>
+  										<p class="sst"><i class="icon-search "></i></p>
   									</div>
   									
   				  </div>	
