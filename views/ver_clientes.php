@@ -43,38 +43,45 @@ session_start();
 <body>
 	<div class="grid-container fluid">
 		<div class="grid-x grid-padding-x">
-			<div class="cell medium-3"style="background-color: #0000AB; height: 50rem;">
-    				<div class="barra_lat">	
-      				<?php 
-						 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+			<div class="cell medium-3"style="background-color: #000000;">
+    				<div class="cell medium-12 op-home2">
+      					<p style="text-align: left; padding-top: 1rem;">
+						<?php if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
+							$mostrar = 'display= "none";';
+							}; ?>
+							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
+      						 <a href="home.php"><i class="icon-home"></i></a>
+							<?php 
+								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
   							# code...
-  							echo "<button id='file' class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
-  						}; 
-				  	?>	
+  							echo "<button id='file' class='btn'>Subir Archivo</button>";
+  						}; 	 ?>
+      						</p>
+      				</div> 
+      				<div class="barra_lat">	
       				<ul class="nav-bar">	
-						<li><a href="home.php"><button><span>
-							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
-						<li><a href="configuracion.php"><button><span>
-							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
-						<li><a href="clientes.php"><button style="color: yellow;"><span>
-							<img src="../img/add-clientes-06.png" alt="control"></span> Agregar Clientes </button></a></li>
-						<li><a href="categorias.php"><button><span>
-							<img src="../img/settings.png" alt="control"></span> Categorias </button></a></li>	
+						<li><a href="home.php"><button>
+							<i class="icon-home"></i>&nbsp;&nbsp;&nbsp; Home</button></a></li>
+						<li><a href="configuracion.php"><button><i class="icon-users"></i>&nbsp;&nbsp;&nbsp; Agregar Usuarios </button></a></li>
+							<?php if ($row['user_tipo']=='Administrador' || $row['user_tipo']=='Colaborador') {
+								echo( "<li><a href='clientes.php'><button style='color: #ffa900;'><i class='icon-user-tie'></i>&nbsp;&nbsp;&nbsp; Agregar Clientes </button></a></li>
+						<li><a href='categorias.php'><button><i class='icon-folder-open'></i>&nbsp;&nbsp;&nbsp; Categorias </button></a></li>");
+							} ?>
       				</ul>	
       				</div>
     			</div>
     			<div class="cell medium-9">
     				<div class="grid-x grid-padding-x cabecera">
 							<div class="cell medium-5">
-							   <h4>VER CLIENTES</h4>		
+							   <h4><strong>Configuración</strong> / Lista clientes </h4>		
 						    </div>
 						    <div class="cell medium-4">
-						    	<p>Usuario: <?php if ($rows>0) {
-							   	echo $row['user_monbre'];
-							   }; ?></p>
+						    	<p> <strong> <?php if ($rows>0) {
+							   	echo $row['user_monbre'].' / '.$row['user_tipo'];
+							   }; ?></strong></p>
 						    </div>
 						    <div class="cell medium-2">
-						    		<img src="../img/user.png" alt="usuario">	
+						    		<img src="../img/icono-galo-barco-09.png" alt="usuario">	
 						    </div>
 						    <div class="cell medium-1 ">
 						    	<div class="cerrar_secion">
@@ -87,10 +94,11 @@ session_start();
 					</div>
 					<div class="grid-x grid-margin-x acciones">
 						<div class="cell medium-7 medium-offset-1">
-							<div id="wraper">
-							<input type="text" id="buscar_user" placeholder=" Buscar cliente">
-							<button class="buscar_btn"><i class="icon-search"></i></button>
-							</div>
+							<div class="cell medium-7 medium-offset-1">
+							<div id="wraper" class="input-group">
+						<button style="border-radius: 200px 0px 0px 200px;" class="buscar_btn input-group-button"><i class="icon-search"></i></button>
+						<input style="border-radius: 0px 200px 200px 0px;" class="input-group-field " type="text" id="buscar_user" placeholder=" Buscar usuario">
+					</div>
 						</div>
 					</div>
 					<div class="grid-x grid-padding-x tabla">

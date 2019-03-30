@@ -187,15 +187,15 @@ session_start();
 		<div class="cell medium-9">
 			<div class="grid-x grid-padding-x cabecera">
 				<div class="cell medium-5">
-					<h4>RESULTADOS DE BUSQUEDA</h4>		
+					<h4> <strong>Resultados de busqueda</strong></h4>		
 				</div>
 				<div class="cell medium-4">
-					<p>Usuario: <?php if ($rows>0) {
-					   	echo $row['user_monbre'];
+					<p><?php if ($rows>0) {
+					   	echo $row['user_monbre'].' / '.$row['user_tipo'];
 					}; ?></p>
 				</div>
 				<div class="cell medium-2">
-					<img src="../img/user.png" alt="usuario">	
+					<img src="../img/icono-galo-barco-09.png" alt="usuario">	
 				</div>
 				<div class="cell medium-1 ">
 					<div class="cerrar_secion">
@@ -207,19 +207,10 @@ session_start();
 			<div class="grid-x grid-padding-x">
 				<div class="cell medium-3 medium-offset-9" >
 					<div style="margin-top: 1rem;">
-						<div style = "font-size:16px; color:#cc0000;">
-							<?php  if (isset($mensaje)) {
-								echo $mensaje;
-							}else{
-								if (isset($error)) {
-									echo $error;
-								};
-							};
-							 ?></div>
 							 <?php if ($row['user_tipo'] != 'Cliente') {
 							 	if ($row['user_tipo'] != 'Sub-usuario(cliente)') {
 							 		# code...
-							 		echo "<a  class='guardar' href='papelera.php?anio=2019&cat=0'><i class='icon-bin'> ver papelera</i></a>";
+							 		echo "<a  class='guardar1' href='papelera.php?anio=2019&cat=0'>ver papelera</a>";
 							 	};		
 									}; ?>
 					</div>
@@ -227,9 +218,9 @@ session_start();
 			</div>
 			<div class="grid-x grid-margin-x acciones">
 				<div class="cell medium-7 medium-offset-1">
-					<div id="wraper">
-						<input type="text" id="buscar_user" placeholder=" Buscar usuario">
-						<button class="buscar_btn"><i class="icon-search"></i></button>
+					<div id="wraper" class="input-group">
+						<button style="border-radius: 200px 0px 0px 200px;" class="buscar_btn input-group-button"><i class="icon-search"></i></button>
+						<input style="border-radius: 0px 200px 200px 0px;" class="input-group-field " type="text" id="buscar_user" placeholder=" Buscar usuario">
 					</div>
 				</div>
 			</div>
@@ -261,8 +252,7 @@ session_start();
 									<td id=".$v['doc_anio']." class='doc_año'>".$v['doc_anio']."</td>
 									<td id=".$v['doc_cat']." class='doc_cat'>".$v['cat_nombre']."</td>
 									<td id='".$v['doc_ruta']."'>
-									<button id='ver_pdf' class='button editar small'>
-									<i class='icon-cloud-download'></i></button>
+									<button id='ver_pdf' class='button editar small'>VER</button>
 								    <button ".$btn." id='elimina' class='button desactiva small'><i class='icon-bin'></i></button>
 									</td>
 									</tr>";

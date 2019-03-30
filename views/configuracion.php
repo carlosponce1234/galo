@@ -50,24 +50,29 @@ session_start();
 	<body>
 		<div class="grid-container fluid">
 			 <div class="grid-x grid-padding-x">
-    			<div class="cell medium-3"style="background-color: #0000AB;">
-      				<div class="barra_lat">	
-      				<?php 
-						 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+    			<div class="cell medium-3"style="background-color: #000000;">
+    				<div class="cell medium-12 op-home2">
+      					<p style="text-align: left; padding-top: 1rem;">
+						<?php if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
+							$mostrar = 'display= "none";';
+							}; ?>
+							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
+      						 <a href="home.php"><i class="icon-home"></i></a>
+							<?php 
+								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
   							# code...
-  							echo "<button id='file' class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
-  						}; 
-				  	?>	
+  							echo "<button id='file' class='btn'>Subir Archivo</button>";
+  						}; 	 ?>
+      						</p>
+      				</div> 
+      				<div class="barra_lat">	
       				<ul class="nav-bar">	
-						<li><a href="home.php"><button><span>
-							<img src="../img/home-06.png" alt="control"></span> Home </button></a></li>
-						<li><a href="configuracion.php"><button style="color: yellow;"><span>
-							<img src="../img/add-users-06.png" alt="control"></span> Agregar Usuarios </button></a></li>
+						<li><a href="home.php"><button>
+							<i class="icon-home"></i>&nbsp;&nbsp;&nbsp; Home</button></a></li>
+						<li><a href="configuracion.php"><button style="color: #ffa900;"><i class="icon-users"></i>&nbsp;&nbsp;&nbsp; Agregar Usuarios </button></a></li>
 							<?php if ($row['user_tipo']=='Administrador' || $row['user_tipo']=='Colaborador') {
-								echo( "<li><a href='clientes.php'><button><span>
-							<img src='../img/add-clientes-06.png' alt='control'></span> Agregar Clientes </button></a></li>
-						<li><a href='categorias.php'><button><span>
-							<img src='../img/settings.png' alt='control'></span> Categorias </button></a></li>");
+								echo( "<li><a href='clientes.php'><button><i class='icon-user-tie'></i>&nbsp;&nbsp;&nbsp; Agregar Clientes </button></a></li>
+						<li><a href='categorias.php'><button><i class='icon-folder-open'></i>&nbsp;&nbsp;&nbsp; Categorias </button></a></li>");
 							} ?>
       				</ul>	
       				</div>
@@ -75,15 +80,15 @@ session_start();
 				<div class="cell medium-9">
 						<div class="grid-x grid-padding-x cabecera">
 							<div class="cell medium-5">
-							   <h4>CREAR NUEVO USUARIO</h4>		
+							   <h4> <strong>Configuración</strong> / Crear usuario </h4>		
 						    </div>
 						    <div class="cell medium-4">
-						    	<p>Usuario: <?php if ($rows>0) {
-							   	echo $row['user_monbre'];
-							   }; ?></p>
+						    	<p> <strong> <?php if ($rows>0) {
+							   	echo $row['user_monbre'].' / '.$row['user_tipo'];
+							   }; ?></strong></p>
 						    </div>
 						    <div class="cell medium-2">
-						    		<img src="../img/user.png" alt="usuario">	
+						    		<img src="../img/icono-galo-barco-09.png" alt="usuario">	
 						    </div>
 						    <div class="cell medium-1 ">
 						    	<div class="cerrar_secion">
@@ -97,7 +102,7 @@ session_start();
 					<div class="grid-x grid-padding-x">
 						<div class="cell medium-3 medium-offset-9" >
 							<div style="margin-top: 1.5rem;">
-								<a  class="guardar" href="usuarios.php"><i class="icon-eye"></i> Ver todos</a>
+								<a  class="guardar1" href="usuarios.php">Ver todos</a>
 							</div>
 						</div>
 					</div>
