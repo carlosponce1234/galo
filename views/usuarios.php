@@ -171,19 +171,72 @@ session_start();
   		<label for="mail">Correo electronico</label>
   		<input type="email" id="mail" name="mail">
   		<label for="permisos">Permisos</label>
-  		<select name="permisos" id="permisos">
-			<option  selected id="permiso"></option>
-			<?php 
-			foreach ($result3 as $key => $v) {
-				echo "<option id=".$v['permisos_id']." value ='".$v['permisos_id']."'>".$v['permisos_desc']."</option>";
-				};		
-				  	 ?>
-		</select>
-		<label for="estado">Estado</label>
-		<select name="estado" id="estado">
-			 	<option value="0" selected>Activo</option>
-			 	<option value="1">Inactivo</option>
-		</select>
+  		<div class="grid-x grid-padding-x">
+									<div class="cell medium-4">
+										<span>BUSCAR</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-buscar" type="checkbox" name="p-buscar">
+  										<label class="switch-paddle" for="p-buscar">
+    									<span class="show-for-sr">buscar</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+									<div class="cell medium-4">
+										<span>SUBIR</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-subir" type="checkbox" name="p-subir">
+  										<label class="switch-paddle" for="p-subir">
+    									<span class="show-for-sr">subir</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+									<div class="cell medium-4">
+										<span>crea usuarios</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-usuario" type="checkbox" name="p-usuario">
+  										<label class="switch-paddle" for="p-usuario">
+    									<span class="show-for-sr">usuario</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+									<div class="cell medium-4">
+										<span>crea clientes</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-clientes" type="checkbox" name="p-clientes">
+  										<label class="switch-paddle" for="p-clientes">
+    									<span class="show-for-sr">clientes</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+									<div class="cell medium-4">
+										<span>crea cat.</span>
+									   <div class="switch galo small">
+  										<input  class="switch-input" id="p-categoria" type="checkbox" name="p-categoria">
+  										<label class="switch-paddle" for="p-categoria">
+    									<span class="show-for-sr">categoria</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+								</div>
+		<label for="estado">ACTIVO?</label>
+		<div class="switch galo1 large">
+  				<input  class="switch-input" id="estado" type="checkbox" name="estado">
+  				<label class="switch-paddle" for="estado">
+    			<span class="show-for-sr">estado</span>
+    			<span class="switch-active" aria-hidden="true">SI</span>
+    			<span class="switch-inactive" aria-hidden="true">NO</span>
+  				</label>
+									   </div>
 		<button class="guardar" id="guardar"><i class="icon-floppy-disk"></i>Guardar</button>
 		<button  class="reset" id="cancelar"><i class="icon-cross"></i>Cancelar</button>	
   	</form>
@@ -228,8 +281,25 @@ session_start();
 					$('#n_usuario').val(tmp[1]);
 					$('#pass').val(tmp[3]);
 					$('#mail').val(tmp[2]);
-					$('#permiso').val(tmp[6]);
-					$('#permiso').html(tmp[7]);
+					//alert(tmp[6]);
+					if (tmp[6] == '1') {
+						$('#p-buscar').attr('checked','true');
+					};
+					if (tmp[7] == '1') {
+						$('#p-subir').attr('checked','true');
+					};
+					if (tmp[9] == '1') {
+						$('#p-usuario').attr('checked','true');
+					};
+					if (tmp[8] == '1') {
+						$('#p-clientes').attr('checked','true');
+					};
+					if (tmp[10] == '1') {
+						$('#p-categoria').attr('checked','true');
+					};
+					if (tmp[11] == '0') {
+						$('#estado').attr('checked','true');
+					};				
 				} 
 			});
 			$('#e_user').foundation('open');
@@ -245,9 +315,13 @@ session_start();
 				var n_usuario = $('#n_usuario').val();
 				var pass = $('#pass').val();
 				var mail = $('#mail').val();
-				var permiso = $('#permisos').val();
-				var estado = $('#estado').val();
 				var user_id = $('#user_id').val();
+				var user_estado = $('#estado').is(':checked');
+			var p_buscar = $('#p-buscar').is(':checked');
+			var p_subir = $('#p-subir').is(':checked');
+			var p_usuario = $('#p-usuario').is(':checked');
+			var p_clientes = $('#p-clientes').is(':checked');
+			var p_categoria = $('#p-categoria').is(':checked');
 				var operacion = 'update';
 				//alert(n_usuario+', '+pass+', '+mail+', '+permiso+', '+estado+', '+user_id+','+operacion);
 				$.ajax({
@@ -258,9 +332,14 @@ session_start();
 						n_usuario : n_usuario,
 						pass : pass,
 						mail : mail,
-						permiso : permiso,
-						estado : estado,
+						user_estado : user_estado,
 						user_id : user_id,
+						p_buscar : p_buscar,
+						p_subir : p_subir,
+						p_categoria :p_categoria,
+						p_usuario : p_usuario,
+						p_clientes : p_clientes,
+
 					},
 					success: function(data){
 						alert(data);

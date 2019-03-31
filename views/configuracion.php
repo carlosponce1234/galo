@@ -50,7 +50,7 @@ session_start();
 	<body>
 		<div class="grid-container fluid">
 			 <div class="grid-x grid-padding-x">
-    			<div class="cell medium-3"style="background-color: #000000;">
+    			<div class="cell medium-3 "style="background-color: #000000;" >
     				<div class="cell medium-12 op-home2">
       					<p style="text-align: left; padding-top: 1rem;">
 						<?php if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
@@ -260,7 +260,7 @@ session_start();
 									<div class="cell medium-4">
 										<span>crea cat.</span>
 									   <div class="switch galo small">
-  										<input class="switch-input" id="p-categoria" type="checkbox" name="p-categoria">
+  										<input  class="switch-input" id="p-categoria" type="checkbox" name="p-categoria">
   										<label class="switch-paddle" for="p-categoria">
     									<span class="show-for-sr">categoria</span>
     									<span class="switch-active" aria-hidden="true">SI</span>
@@ -279,7 +279,7 @@ session_start();
 						<div class="cell medium-5">
 							<div >
 								<div class="switch galo1 large">
-  										<input class="switch-input" id="estado" type="checkbox" name="estado" checked>
+  										<input  class="switch-input" id="estado" type="checkbox" name="estado" checked>
   										<label class="switch-paddle" for="estado">
     									<span class="show-for-sr">estado</span>
     									<span class="switch-active" aria-hidden="true">SI</span>
@@ -324,14 +324,21 @@ session_start();
 			var user_pass2 =$('#pass1').val();
 			var user_cliente= $('#cliente').val();
 			var user_tipo = $('#tipo_usuario').val();
-			var user_permiso = $('#permisos').val();
-			var user_estado = $('#estado').val();
+			var user_permiso = '4';
+			var user_estado = $('#estado').is(':checked');
+			var p_buscar = $('#p-buscar').is(':checked');
+			var p_subir = $('#p-subir').is(':checked');
+			var p_usuario = $('#p-usuario').is(':checked');
+			var p_clientes = $('#p-clientes').is(':checked');
+			var p_categoria = $('#p-categoria').is(':checked');
+			 //alert(test);
+			//alert(operacion+'/ '+user_name+'/ '+user_mail+'/ '+user_pass1+'/ '+user_cliente+'/ '+user_tipo+'/ '+user_permiso+'/ '+user_estado+'/ '+p_buscar);	
 			if (user_pass2=user_pass1) {
 				$.ajax({
 					url:'../core/usuarios.php',
 					type:'POST',
 					data:{
-						operacion:operacion,user_name:user_name,user_mail:user_mail,user_pass1:user_pass1,user_cliente:user_cliente,user_tipo:user_tipo,user_permiso:user_permiso,user_estado:user_estado
+						operacion:operacion,user_name:user_name,user_mail:user_mail,user_pass1:user_pass1,user_cliente:user_cliente,user_tipo:user_tipo,user_permiso:user_permiso,user_estado:user_estado,p_buscar:p_buscar,p_categoria:p_categoria,p_clientes:p_clientes,p_usuario:p_usuario,p_subir:p_subir
 					},
 					success: function(data){
 						alert(data);
@@ -354,8 +361,8 @@ session_start();
 			$('#e_subir').foundation('open');
 		});
 		$('#p-todo' ).click(function () {
-  $( '.input input[type="checkbox"]').prop('checked', this.checked)
-})
+        $( '.input input[type="checkbox"]').prop('checked', this.checked)
+});
 
 	})
 </script>

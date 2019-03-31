@@ -169,8 +169,8 @@ form .logbtn{
 	padding:0.5rem;
 	text-align: center;
 	border-radius: 0.5rem;
-	margin:1.5rem;
 	cursor: pointer;
+    margin-bottom: 1rem;
 }
 .guardar1{
 	color: white;
@@ -191,9 +191,9 @@ form .logbtn{
 	padding:0.5rem;
 	text-align: center;
 	border-radius: 0.5rem;
-	margin:1.5rem;
 	cursor: pointer;
 	float: right;
+	margin-bottom: 1rem;
 }
 .acciones{
 	margin-top: 1rem;
