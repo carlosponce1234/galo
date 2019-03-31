@@ -8,11 +8,11 @@ if (!empty($_POST)) {
     $sql="SELECT * FROM usuarios WHERE user_mail = '$mail'";
     $result=$mysqli->query($sql);
     $rows = $result->num_rows;
-    
+    $row = $result->fetch_assoc();
     if ($rows>0) {
-      # code...
-    $destino =  $row['user_mail'];
-        $to = "$destino, not-reply@documentosgaloyasociados.com";
+       $idpc = $_SERVER['REMOTE_ADDR'];
+       $destino =  $row['user_mail'];
+        $to = $destino.", not-reply@documentosgaloyasociados.com";
 $subject = "Credenciales inicio de sesion  de ".$row['user_monbre'];
 
 $message = "
@@ -21,15 +21,16 @@ $message = "
 <title>credenciales de inicio de secion</title>
 </head>
 <body>
-<p>HAS SOLICITADO EL ENVIO DE TUS CREDENCIALES DE INICIO DE SECION </p>
+<p>Hemos recibido tu solicitud de credenciañes desde la pc:".$idpc."</br>
+si no has sido tu ponte en contacto con los administradores de la aplicacion y solicita un cambio de contraseña </p>
 <table>
 <tr>
-<th>Firstname</th>
-<th>Lastname</th>
+<th>Nombre de usuario</th>
+<th>Contraseña</th>
 </tr>
 <tr>
-<td>John</td>
-<td>Doe</td>
+<td>".$row['user_monbre']."</td>
+<td>".$row['user_monbre']."</td>
 </tr>
 </table>
 </body>
@@ -41,15 +42,16 @@ $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 // More headers
-$headers .= 'From: <webmaster@example.com>' . "\r\n";
-$headers .= 'Cc: myboss@example.com' . "\r\n";
+$headers .= 'From: <not-reply@documentosgaloyasociados.com>' . "\r\n";
+//$headers .= 'Cc: myboss@example.com' . "\r\n";
 
-//mail($to,$subject,$message,$headers);
+      mail($to,$subject,$message,$headers);
+      echo "<script> alert('henos enviado un mensaje con tus datos de inicio de secion. SI NO LO RECIBES PONTE EN CONTACTO CON EL ADMINISTRADOR') </script>";
     }else{
       
-      //echo "<script> alert('No se ha encontrado un usuario con este correo') </script>";
-    }
-}
+      echo "<script> alert('No se ha encontrado un usuario con este correo') </script>";
+    };
+};
 
  ?>
 <!doctype html>
