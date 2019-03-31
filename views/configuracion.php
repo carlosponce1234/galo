@@ -201,37 +201,100 @@ session_start();
 						</div>
 						<div class="cell medium-5">
 							<div class="input">
-								   	<?php 
-								   	if ($row['user_tipo'] == 'Cliente' ||$row['user_tipo'] == 'Sub-usuario(cliente)' ) {
-								   		echo "<select disabled name='permisos' id='permisos'>";
-								   	echo "<option value='5' selected>Buscar</option>";
-								   	} else {
-								   		echo "<select name='permisos' id='permisos'>";
-								   	echo "<option value='0' disabled selected>Asignar permisos</option>";
-								   	};
-								   		foreach ($result3 as $key => $v) {
-								   				echo "<option id=".$v['permisos_id']." value ='".$v['permisos_id']."'>".$v['permisos_desc']."</option>";
-								   			};	
-								   	 ?>
-								   </select>	
-						    	</div>
+								<div class="grid-x grid-padding-x">
+									<div class="cell medium-4">
+										<span>TODOS</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-todo" type="checkbox" name="p-todo">
+  										<label class="switch-paddle" for="p-todo">
+    									<span class="show-for-sr">todo</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+									<div class="cell medium-4">
+										<span>BUSCAR</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-buscar" type="checkbox" name="p-buscar">
+  										<label class="switch-paddle" for="p-buscar">
+    									<span class="show-for-sr">buscar</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+									<div class="cell medium-4">
+										<span>SUBIR</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-subir" type="checkbox" name="p-subir">
+  										<label class="switch-paddle" for="p-subir">
+    									<span class="show-for-sr">subir</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+									<div class="cell medium-4">
+										<span>crea usuarios</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-usuario" type="checkbox" name="p-usuario">
+  										<label class="switch-paddle" for="p-usuario">
+    									<span class="show-for-sr">usuario</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+									<div class="cell medium-4">
+										<span>crea clientes</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-clientes" type="checkbox" name="p-clientes">
+  										<label class="switch-paddle" for="p-clientes">
+    									<span class="show-for-sr">clientes</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+									<div class="cell medium-4">
+										<span>crea cat.</span>
+									   <div class="switch galo small">
+  										<input class="switch-input" id="p-categoria" type="checkbox" name="p-categoria">
+  										<label class="switch-paddle" for="p-categoria">
+    									<span class="show-for-sr">categoria</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">No</span>
+  										</label>
+									   </div>
+									</div>
+								</div>
+						    </div>
 						</div>
 						<div class="cell medium-3 medium-offset-1">
 							<div class="label1">
-						    	<p>Estado</p>	
+						    	<p>Activo?</p>	
 						    	</div>
 						</div>
 						<div class="cell medium-5">
-							<div class="input">
-								   <select name="estado" id="estado">
+							<div >
+								<div class="switch galo1 large">
+  										<input class="switch-input" id="estado" type="checkbox" name="estado" checked>
+  										<label class="switch-paddle" for="estado">
+    									<span class="show-for-sr">estado</span>
+    									<span class="switch-active" aria-hidden="true">SI</span>
+    									<span class="switch-inactive" aria-hidden="true">NO</span>
+  										</label>
+									   </div>
+								 <!--  <select name="estado" id="estado">
 								   	<option value="0" selected>Activo</option>
 								   	<option value="1">Inactivo</option>
-								   </select>	
+								   </select>  -->	
 						    	</div>
 							
 						</div>
 						<div class="cell medium-3 medium-offset-4 ">
-							<div class="input">
+							<div class="">
 								<button class="guardar" id="guardar"> Guardar Usuario </button>	   	
 						    </div>
 						</div>
@@ -290,6 +353,9 @@ session_start();
 		$(document).on('click', '#file',function(event){
 			$('#e_subir').foundation('open');
 		});
+		$('#p-todo' ).click(function () {
+  $( '.input input[type="checkbox"]').prop('checked', this.checked)
+})
 
 	})
 </script>

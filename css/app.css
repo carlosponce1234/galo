@@ -461,3 +461,17 @@ float: left;
 	margin-bottom: 0;
 	text-align: center;
 }
+.switch.galo input:checked ~ .switch-paddle {
+  background: #0000ab;
+}
+
+.switch.galo input ~ .switch-paddle {
+  background: #0f0f0f;
+}
+.switch.galo1 input:checked ~ .switch-paddle {
+  background: green;
+}
+
+.switch.galo1 input ~ .switch-paddle {
+  background: red;
+}

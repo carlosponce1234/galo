@@ -60,9 +60,6 @@ session_start();
   					<div class="cell medium-3 op-home">
   						<p><a href="configuracion.php">Configuracion <i class="icon-cog"></i></a><a href="../core/cerrar_secion.php"> Cerrar seción <i class="icon-enter"></i></a></p>
   					</div>
-  			<!--		<div class="cell medium-1  op-home">
-  						<p><a href="../core/cerrar_secion.php">Cerrar seción<i class="icon-enter"></i></a></p>
-  					</div>  -->
   				</div>
   			</div>
   			<div class="cell medium-10">
