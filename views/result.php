@@ -118,7 +118,7 @@ session_start();
 <body>
 	<div class="grid-container fluid">
 		<div class="grid-x grid-padding-x">
-			<div class="cell medium-3 align-center"style="background-color: #000000; height: 50rem;">
+			<div class="cell medium-3 align-center"style="background-color: #000000; ">
 				<div class="cell medium-12 op-home2">
       					<p style="text-align: left; padding-top: 1rem;">
 						<?php if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
@@ -187,7 +187,7 @@ session_start();
 		<div class="cell medium-9">
 			<div class="grid-x grid-padding-x cabecera">
 				<div class="cell medium-5">
-					<h4> <strong>Resultados de busqueda</strong></h4>		
+					<h4> <strong>Documentos</strong> / Resultados</h4>		
 				</div>
 				<div class="cell medium-4">
 					<p><?php if ($rows>0) {

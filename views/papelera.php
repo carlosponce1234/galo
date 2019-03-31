@@ -75,26 +75,27 @@ session_start();
 <body>
 	<div class="grid-container fluid">
 		<div class="grid-x grid-padding-x">
-			<div class="cell medium-3 align-center"style="background-color: #0000AB; height: 50rem;">
-				<div class="cell medium-12 op-home">
+			<div class="cell medium-3 align-center"style="background-color: #000000; ">
+				<div class="cell medium-12 op-home2">
       					<p style="text-align: left; padding-top: 1rem;">
 						<?php if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
 							$mostrar = 'display= "none";';
 							}; ?>
 							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
-      						 <a href="home.php"><i class="icon-home"></i></a></p>
+      						 <a href="home.php"><i class="icon-home"></i></a>
+							<?php 
+								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+  							# code...
+  							echo "<button id='file' class='btn'>Subir Archivo</button>";
+  						}; 	 ?>
+      						</p>
       				</div>
       			<div class="barra_lat">
-      				<?php 
-						 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
-  							# code...
-  							echo "<button id='file' class='btn'><span><i class='icon-cloud-upload'></i></span>SUBIR ARCHIVOS</button>";
-  						}; 
-				  	?>
+      				<h5>Seleccione uno o mas criterios para su busqueda</h5>
 				  <div class="nav-bar-result">		
-  					<button>NUMERO DE DECLARACIÓN</button>
+  					<button>Nombre o referencia</button>
   					<input type="text" name="doc_numliqu" id="doc_numliq" placeholder="N° Liquidacion">
-  					<button>AÑO DE PUBLICACIÓN</button>
+  					<button>AÑo de publicación</button>
 									<select name="anio" id="anio">
 										<option value="2015">2015</option>
 										<option value="2016">2016</option>
@@ -123,7 +124,7 @@ session_start();
 										<option value="2039">2039</option>
 										<option value="2040">2040</option>
 									</select>	
-									<button>CATEGORIA</button>
+									<button>Categoría</button>
   									<select name="cat" id="cat">
   										<option value="0"  selected>Todas las categorias</option>
   										<?php 
@@ -132,22 +133,26 @@ session_start();
 										};		
 				  						 ?>
   									</select>
-  									<button id="bus-result"><i class="icon-search"></i> Buscar</button>
+  									<div class="btn-group">
+  										<p id="bus-result">Buscar </p>
+  										<p class="sst"><i class="icon-search "></i></p>
+  									</div>
+  									
   				  </div>	
     			</div>
 			</div>
 		<div class="cell medium-9">
 			<div class="grid-x grid-padding-x cabecera">
 				<div class="cell medium-5">
-					<h4>PAPELERA</h4>		
+					<h4> <strong>Documentos</strong> / Papelera</h4>		
 				</div>
 				<div class="cell medium-4">
-					<p>Usuario: <?php if ($rows>0) {
-					   	echo $row['user_monbre'];
+					<p><?php if ($rows>0) {
+					   	echo $row['user_monbre'].' / '.$row['user_tipo'];
 					}; ?></p>
 				</div>
 				<div class="cell medium-2">
-					<img src="../img/user.png" alt="usuario">	
+					<img src="../img/icono-galo-barco-09.png" alt="usuario">	
 				</div>
 				<div class="cell medium-1 ">
 					<div class="cerrar_secion">
@@ -156,26 +161,11 @@ session_start();
 					</div>		    	
 				</div> 	   
 			</div>
-			<div class="grid-x grid-padding-x">
-				<div class="cell medium-3 medium-offset-9" >
-					<div style="margin-top: 1rem;">
-						<div style = "font-size:16px; color:#cc0000;">
-							<?php  if (isset($mensaje)) {
-								echo $mensaje;
-							}else{
-								if (isset($error)) {
-									echo $error;
-								};
-							};
-							 ?></div>
-					</div>
-				</div>
-			</div>
 			<div class="grid-x grid-margin-x acciones">
 				<div class="cell medium-7 medium-offset-1">
-					<div id="wraper">
-						<input type="text" id="buscar_user" placeholder=" Buscar usuario">
-						<button class="buscar_btn"><i class="icon-search"></i></button>
+					<div id="wraper" class="input-group">
+						<button style="border-radius: 200px 0px 0px 200px;" class="buscar_btn input-group-button"><i class="icon-search"></i></button>
+						<input style="border-radius: 0px 200px 200px 0px;" class="input-group-field " type="text" id="buscar_user" placeholder=" Buscar usuario">
 					</div>
 				</div>
 			</div>
@@ -207,8 +197,8 @@ session_start();
 									<td id=".$v['doc_anio']." class='doc_año'>".$v['doc_anio']."</td>
 									<td id=".$v['doc_cat']." class='doc_cat'>".$v['cat_nombre']."</td>
 									<td id=".$v['doc_ruta'].">
-									<button id='ver_pdf' class='button editar small'>
-									<i class='icon-cloud-download'></i></button>
+									<button id='ver_pdf' class='button editar small'>VER</button>
+								    <button ".$btn." id='restaura' class='button editar2 small'>REST.</button>
 								    <button ".$btn." id='elimina' class='button desactiva small'><i class='icon-bin'></i></button>
 									</td>
 									</tr>";
@@ -240,13 +230,37 @@ session_start();
 		});
 		$(document).on('click', '#elimina', function(event){
 			
-			var r = confirm('Seguro desea enviar documento a la papelera?');
+			var r = confirm('Seguro desea eliminar permanentemente este documento?');
 			if (r == true) {
 				var cell = $(this).parent();
 			var row = cell.parent();
 			var cell_id = row.children('.doc_id');
 			var doc_id = cell_id.attr('id');
-			var operacion = 'papelera';
+			var operacion = 'borrar';
+			//alert(doc_id+', '+operacion);
+				$.ajax({
+				url: '../core/documentos.php',
+				type: 'POST',
+				data: {
+					doc_id : doc_id,
+					operacion: operacion,
+				},
+				success: function(data){
+					alert(data);
+					row.remove();
+				}
+			});
+			};
+		});
+		$(document).on('click', '#restaura', function(event){
+			
+			var r = confirm('Seguro desea restaurar este documento?');
+			if (r == true) {
+				var cell = $(this).parent();
+			var row = cell.parent();
+			var cell_id = row.children('.doc_id');
+			var doc_id = cell_id.attr('id');
+			var operacion = 'restaura';
 			//alert(doc_id+', '+operacion);
 				$.ajax({
 				url: '../core/documentos.php',

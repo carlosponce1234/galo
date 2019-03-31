@@ -228,6 +228,15 @@ form .logbtn{
 .editar i{
 	font-size: 1.1rem;
 }
+.editar2{
+	background-color: cyan;
+	color: white; 
+	padding: 0.8rem;
+	font-weight:bold;
+}
+.editar2 i{
+	font-size: 1.1rem;
+}
 .desactiva{
 	background-color: red; 
 }
