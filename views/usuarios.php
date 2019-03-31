@@ -15,31 +15,35 @@ session_start();
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
 		
-		if ($row['user_cliente'] == 1) {
-			# code...
-
-		$sql2 ="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id";
+		if ($row['user_cliente'] == 1 ) {
+			if ($row['user_crear_u'] == 0) {
+			$us=$row['user_id'];
+			$sql2 ="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id WHERE user_id = '$us'";
+			$result2=$mysqli->query($sql2);
+			$row2 = $result2->fetch_assoc();
+			} else {
+			$sql2 ="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id";
+			$result2=$mysqli->query($sql2);
+			$row2 = $result2->fetch_assoc();	
+			};
+		} else {
+		$cli=$row['user_cliente'];
+		if ($row['user_crear_u'] == 0) {
+		$us=$row['user_id'];	
+		$sql2 ="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id 
+		WHERE user_cliente = '$cli' AND user_id = '$us'";
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
-		} else {
-			$cli=$row['user_cliente'];
+			} else {
 		$sql2 ="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id WHERE user_cliente = '$cli'";
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
-			# code...
-		}
-		
-
+			}
+		};
 
 		$sql3 =" SELECT * FROM permisos";
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
-		
-	if ($row['user_permiso'] == 3 ||$row['user_permiso'] == 5 ) {
-			# code...
-			header("Location: home.php");
-		};
-		
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -68,7 +72,7 @@ session_start();
 							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
       						 <a href="home.php"><i class="icon-home"></i></a>
 							<?php 
-								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+								 if ($row['user_subir'] == 1)  {
   							# code...
   							echo "<button id='file' class='btn'>Subir Archivo</button>";
   						}; 	 ?>
@@ -138,6 +142,13 @@ session_start();
 								   				# code...
 								   				$est = 'I';
 								   			};
+								   			if ($row['user_crear_u'] == 0) {
+								   				$at = 'disabled';
+								   			} else {
+								   				$at = ' ';
+								   			}
+								   			
+
 										echo "<tr>
 												<td id=".$v['user_id']." class='user_id'>".$v['user_id']."</td>
 												<td id=".$v['user_monbre']." class='user_nombre'>".$v['user_monbre']."</td>
@@ -148,7 +159,7 @@ session_start();
 												<td>
 													<button id='edit_user' class='button editar small'>
 													<i class='icon-eye'></i></button>
-									<button id='desactiva' class='button desactiva small'><i class='icon-user-minus'></i></button>
+									<button ".$at." id='desactiva' class='button desactiva small'><i class='icon-user-minus'></i></button>
 												</td>
 											</tr>";
 										};		
@@ -163,6 +174,15 @@ session_start();
   	<h5>Editar usuario</h5>
   	<hr>
   	<form action="">
+  		<?php 
+			if ($row['user_crear_u'] == 0) {
+				$att = 'disabled';
+				$diss = 'style="display: none;"';
+			} else {
+				$att = ' ';
+				$diss = ' ';
+			};
+		 ?>	
   		<input type="text" name="user_id" id="user_id" style="display: none;">
   		<label for="n_usuario">Nombre de usuario</label>
   		<input type="text" id="n_usuario" name="n_usuario">
@@ -171,7 +191,7 @@ session_start();
   		<label for="mail">Correo electronico</label>
   		<input type="email" id="mail" name="mail">
   		<label for="permisos">Permisos</label>
-  		<div class="grid-x grid-padding-x">
+  		<div class="grid-x grid-padding-x" <?php echo $diss; ?>>
 									<div class="cell medium-4">
 										<span>BUSCAR</span>
 									   <div class="switch galo small">
@@ -228,15 +248,15 @@ session_start();
 									   </div>
 									</div>
 								</div>
-		<label for="estado">ACTIVO?</label>
-		<div class="switch galo1 large">
+		<label <?php echo $diss; ?> for="estado">ACTIVO?</label>
+		<div class="switch galo1 large" <?php echo $diss; ?>>
   				<input  class="switch-input" id="estado" type="checkbox" name="estado">
   				<label class="switch-paddle" for="estado">
     			<span class="show-for-sr">estado</span>
     			<span class="switch-active" aria-hidden="true">SI</span>
     			<span class="switch-inactive" aria-hidden="true">NO</span>
   				</label>
-									   </div>
+									   </div>						   
 		<button class="guardar" id="guardar"><i class="icon-floppy-disk"></i>Guardar</button>
 		<button  class="reset" id="cancelar"><i class="icon-cross"></i>Cancelar</button>	
   	</form>

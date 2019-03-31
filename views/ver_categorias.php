@@ -19,7 +19,7 @@ session_start();
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
 		
-	if ($row['user_permiso'] == 3 ||$row['user_permiso'] == 5 ) {
+	if ($row['user_crear_ct'] == 0 ) {
 			# code...
 			header("Location: home.php");
 		};

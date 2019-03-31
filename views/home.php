@@ -51,7 +51,7 @@ session_start();
 							   }; ?></p>
   					</div>
   					<div class="cell medium-2 medium-offset-2 bt-home" >
-  						<?php if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+  						<?php if ($row['user_subir'] == 1)  {
   							# code...
   							echo "<button id='file'> Subir un archivo</i></button>";
   						} ?>
@@ -118,8 +118,18 @@ session_start();
   									</select>
   								</div>
   							</div>
+                <?php if ($row['user_buscar'] == 0) {
+                  $ww = 'style="display: none;"';
+                  echo "<div style = 'height:5rem; width: 100%; margin-top:3rem; color:white; text-align:center';>
+            <h5>PARECE QUE NO TIENES LOS PERMISOS NECESARIOS </h5>
+            <p>No cuentas con los permisos para realizar busquedas</p>
+          </div>";
+                } else {
+                  $ww = ' ';
+                }
+                 ?>
   							<div class="cell medium-2  bt-home-2">
-								<button id="search-home"><i class="icon-search"></i> &nbsp;&nbsp;&nbsp;Búsqueda</button>
+								<button <?php echo $ww ?> id="search-home"><i class="icon-search"></i> &nbsp;&nbsp;&nbsp;Búsqueda</button>
 							</div>
   						</div>
   					</div>

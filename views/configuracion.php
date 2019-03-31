@@ -59,7 +59,7 @@ session_start();
 							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
       						 <a href="home.php"><i class="icon-home"></i></a>
 							<?php 
-								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+								 if ($row['user_subir'] == 1)  {
   							# code...
   							echo "<button id='file' class='btn'>Subir Archivo</button>";
   						}; 	 ?>
@@ -106,7 +106,16 @@ session_start();
 							</div>
 						</div>
 					</div>
-					<div class="grid-x grid-padding-x etiqueta">
+					<?php if ($row['user_crear_u'] == 0) {	$att = 'style="display: none;"';
+					echo "<div style = 'height:30rem; margin-top:3rem;' class='callout warning'>
+  					<h5>PARECE QUE NO TIENES LOS PERMISOS NECESARIOS </h5>
+  					<p>No cuentas con los permisos para crear nuevos usuarios, ponte en contacto con el administrador del sitio para solicitar permiso</p>
+					</div>";
+				} else {	
+						$att = ' ';
+						}; ?>
+
+					<div <?php echo $att ?> class="grid-x grid-padding-x etiqueta">
 						<div class="cell medium-3 medium-offset-1">
 							<div class="label1">
 						    	<p>Nombre de usuario</p>	
@@ -180,9 +189,11 @@ session_start();
 								   	<?php 
 								   		if ($row['user_tipo'] == 'Cliente' ||$row['user_tipo'] == 'Sub-usuario(cliente)' ) {
 								   			$tt = 'disabled';
+								   			$dd = 'style="display: none;"';
 								   		} else {
 								   			$tt = ' ';
-								   		}
+								   			$dd = ' ';
+								   		};
 								   		
 								   	 ?>
 								   	<option value="0" disabled selected>Eligir tipo de usuario</option>
@@ -202,10 +213,10 @@ session_start();
 						<div class="cell medium-5">
 							<div class="input">
 								<div class="grid-x grid-padding-x">
-									<div class="cell medium-4">
+									<div class="cell medium-4" <?php echo $dd ?>>
 										<span>TODOS</span>
-									   <div class="switch galo small">
-  										<input class="switch-input" id="p-todo" type="checkbox" name="p-todo">
+									   <div class="switch galo small" >
+  										<input <?php echo $tt ?> class="switch-input" id="p-todo" type="checkbox" name="p-todo">
   										<label class="switch-paddle" for="p-todo">
     									<span class="show-for-sr">todo</span>
     									<span class="switch-active" aria-hidden="true">SI</span>
@@ -213,7 +224,7 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4">
+									<div class="cell medium-4" >
 										<span>BUSCAR</span>
 									   <div class="switch galo small">
   										<input class="switch-input" id="p-buscar" type="checkbox" name="p-buscar">
@@ -224,10 +235,10 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4">
+									<div class="cell medium-4" <?php echo $dd ?>>
 										<span>SUBIR</span>
 									   <div class="switch galo small">
-  										<input class="switch-input" id="p-subir" type="checkbox" name="p-subir">
+  										<input <?php echo $tt ?> class="switch-input" id="p-subir" type="checkbox" name="p-subir">
   										<label class="switch-paddle" for="p-subir">
     									<span class="show-for-sr">subir</span>
     									<span class="switch-active" aria-hidden="true">SI</span>
@@ -246,10 +257,10 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4">
+									<div class="cell medium-4" <?php echo $dd ?>>
 										<span>crea clientes</span>
 									   <div class="switch galo small">
-  										<input class="switch-input" id="p-clientes" type="checkbox" name="p-clientes">
+  										<input <?php echo $tt ?> class="switch-input" id="p-clientes" type="checkbox" name="p-clientes">
   										<label class="switch-paddle" for="p-clientes">
     									<span class="show-for-sr">clientes</span>
     									<span class="switch-active" aria-hidden="true">SI</span>
@@ -257,10 +268,10 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4">
+									<div class="cell medium-4" <?php echo $dd ?>>
 										<span>crea cat.</span>
 									   <div class="switch galo small">
-  										<input  class="switch-input" id="p-categoria" type="checkbox" name="p-categoria">
+  										<input <?php echo $tt ?>  class="switch-input" id="p-categoria" type="checkbox" name="p-categoria">
   										<label class="switch-paddle" for="p-categoria">
     									<span class="show-for-sr">categoria</span>
     									<span class="switch-active" aria-hidden="true">SI</span>
@@ -286,16 +297,11 @@ session_start();
     									<span class="switch-inactive" aria-hidden="true">NO</span>
   										</label>
 									   </div>
-								 <!--  <select name="estado" id="estado">
-								   	<option value="0" selected>Activo</option>
-								   	<option value="1">Inactivo</option>
-								   </select>  -->	
 						    	</div>
-							
 						</div>
 						<div class="cell medium-3 medium-offset-4 ">
-							<div class="">
-								<button class="guardar" id="guardar"> Guardar Usuario </button>	   	
+							<div>								
+							<button  class="guardar" id="guardar"> Guardar Usuario </button>   	
 						    </div>
 						</div>
 						<div class="cell medium-3 ">

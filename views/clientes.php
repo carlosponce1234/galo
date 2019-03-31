@@ -15,11 +15,6 @@ session_start();
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
 		
-	if ($row['user_permiso'] == 3 ||$row['user_permiso'] == 5 ) {
-			# code...
-			header("Location: home.php");
-		};
-		
  ?>
   <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -48,7 +43,7 @@ session_start();
 							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
       						 <a href="home.php"><i class="icon-home"></i></a>
 							<?php 
-								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+								 if ($row['user_subir'] == 1)  {
   							# code...
   							echo "<button id='file' class='btn'>Subir Archivo</button>";
   						}; 	 ?>
@@ -88,7 +83,15 @@ session_start();
 						    	
 						    </div> 	   
 					</div>
-					<div class="grid-x grid-padding-x">
+					<?php if ($row['user_crear_u'] == 0) {	$att = 'style="display: none;"';
+					echo "<div style = 'height:30rem; margin-top:3rem;' class='callout warning'>
+  					<h5>PARECE QUE NO TIENES LOS PERMISOS NECESARIOS </h5>
+  					<p>No cuentas con los permisos para crear nuevos usuarios, ponte en contacto con el administrador del sitio para solicitar permiso</p>
+					</div>";
+				} else {	
+						$att = ' ';
+						}; ?>
+					<div class="grid-x grid-padding-x" <?php echo $att ?>>
 						<div class="cell medium-3 medium-offset-9" >
 							<div style="margin-top: 1.5rem;">
 								<a  class="guardar1" href="ver_clientes.php"> Ver todos</a>
