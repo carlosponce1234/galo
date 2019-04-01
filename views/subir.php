@@ -10,33 +10,37 @@ require '../core/conexion.php';
 
 		if (!empty($_POST)) {
 			# code...
-		$nombre = mysqli_real_escape_string($mysqli,$_POST['doc_numliq']);
+		$n = mysqli_real_escape_string($mysqli,$_POST['doc_numliq_anio']);
+		$d = mysqli_real_escape_string($mysqli,$_POST['doc_numliq_del']);
+		$p = mysqli_real_escape_string($mysqli,$_POST['doc_numliq_n']);
 		$anio = mysqli_real_escape_string($mysqli,$_POST['anio']);
 		$cliente = mysqli_real_escape_string($mysqli,$_POST['cliente']);
 		$cat = mysqli_real_escape_string($mysqli,$_POST['cat']);
 		$user_id = mysqli_real_escape_string($mysqli,$_POST['user_id']);
 		$error = '';
+		$nombre = $n.'-'.$d.'-'.$p;
 		$mensaje = '';
-
 		 $temp=$_FILES['archivo']['tmp_name'];
-		 $type = $_FILES['archivo']['type'];     
+		 $ty = $_FILES['archivo']['name'];
+		 $extension = explode(".",$ty);
+		$num = count($extension)-1; 
+		$type = $extension[$num];   
                 $directorio = "../UPLOADS";  
                 $nombre_nomina = $_FILES['archivo']['name'];   
-                $url=$directorio . "/" . $nombre.".pdf";
-                $doc_ruta = "UPLOADS/".  $nombre.".pdf";
-
+                $url=$directorio . "/" . $nombre.'.'.$type;
+                $doc_ruta = "UPLOADS/".  $nombre.'.'.$type;
          if (move_uploaded_file($temp,$url))  
                 {         
                 #echo $nombre." ".$anio." ".$cliente." ".$cat.;              
                 $sql6 = "INSERT INTO `documentos` (`doc_id`, `doc_numliq`, `doc_ruta`, `doc_cat`, `doc_cliente`, `doc_usuario`, `doc_anio`, `doc_papelera`, `doc_timestamp`) VALUES (NULL, '$nombre', '$doc_ruta', '$cat', '$cliente', '$user_id', '$anio', '0', CURRENT_TIMESTAMP)";
                 if($mysqli->query($sql6) === true){
                 	$mensaje = "El archivo se ha subido correctamente";
+                	echo $mensaje;
 				} else{
 					$error = "ERROR: No se pudo realizar operacion. ". $mysqli->error;
-					}
-                     
+					echo $error;
+					}                
                 }        
-
 		};
  ?>
  <div class="reveal" id="e_subir" data-reveal data-animation-in="slidein">
@@ -44,10 +48,22 @@ require '../core/conexion.php';
   	<hr>
   	<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
   		<input id="user_id" name="user_id" style="display: none;" type="text" value="<?php echo $user_id; ?>">
-  		<label for="doc_numliq">Numero de poliza</label>
-  		<input type="text" id="doc_numliq" name="doc_numliq">
+  		<div>
+  			<div style="width: 30%; float: left; margin-right: 3%;">
+  				<label for="doc_numliq">Año</label>
+  				<input type="text" id="doc_numliq_anio" name="doc_numliq_anio" required>  				
+  			</div>
+  			<div style="width: 30%; float: left; margin-right: 3%;">
+  				<label for="doc_numliq">N° Delegacion</label>
+  				<input type="text" id="doc_numliq_del" name="doc_numliq_del" required>  				
+  			</div>
+  			<div style="width: 30%; float: left; margin-right: 3%;">
+  				<label for="doc_numliq">N° de poliza</label>
+  				<input type="text" id="doc_numliq_n" name="doc_numliq_n" required>  				
+  			</div>
+  		</div>
   		<label for="Cliente">Cliente</label>
-  		<select name="cliente" id="cliente">
+  		<select name="cliente" id="cliente" required>
 			<option  disabled selected>Elegir empresa o cliente</option>
 				<?php 
 					foreach ($result5 as $key => $v) {	
@@ -85,7 +101,7 @@ require '../core/conexion.php';
 										<option value="2040">2040</option>
 									</select>
   		<label for="cat">Categoria</label>
-  		<select name="cat" id="cat">
+  		<select name="cat" id="cat" required>
 			<option disabled selected >Elegir Categoria</option>
 			<?php 
 				foreach ($result4 as $key => $v) {
@@ -94,7 +110,7 @@ require '../core/conexion.php';
 					 ?>
 		</select>
 		<label for="archivo">archivo</label>
-		<input type="file" name="archivo">
+		<input type="file" name="archivo" required>
 		<button class="guardar" id="subir-file"><i class="icon-cloud-upload"></i> Subir</button>
 		<button  class="reset" id="cancelar-file"><i class="icon-cross"></i>Cancelar</button>	
   	</form>

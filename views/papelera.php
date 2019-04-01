@@ -54,7 +54,11 @@ session_start();
 		$sql3 =" SELECT * FROM categoria";
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
-
+		
+	if ($row['user_buscar'] == 0 ) {
+			# code...
+			header("Location: home.php");
+		};	
 		
  ?>
   <!doctype html>

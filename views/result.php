@@ -98,7 +98,10 @@ session_start();
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
 
-		
+			if ($row['user_buscar'] == 0 ) {
+			# code...
+			header("Location: home.php");
+		};		
  ?>
   <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
