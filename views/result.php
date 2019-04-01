@@ -109,6 +109,10 @@ session_start();
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="apple-touch-icon" sizes="180x180" href="/galo/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/galo/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/galo/favicon-16x16.png">
+<link rel="manifest" href="/galo/site.webmanifest">
     <title>Resultados</title>
     <link rel="stylesheet" href="../css/foundation.css">
     <link rel="stylesheet" href="../css/app.css">
@@ -129,11 +133,10 @@ session_start();
 							}; ?>
 							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
       						 <a href="home.php"><i class="icon-home"></i></a>
-							<?php 
-								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+								<?php if ($row['user_subir'] == 1)  {
   							# code...
-  							echo "<button id='file' class='btn'>Subir Archivo</button>";
-  						}; 	 ?>
+  							echo "<button id='file'> Subir un archivo</i></button>";
+  						} ?>
       						</p>
       				</div>
       			<div class="barra_lat">
