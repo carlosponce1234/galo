@@ -49,10 +49,7 @@ session_start();
 			<div class="cell medium-3"style="background-color: #000000;">
     				<div class="cell medium-12 op-home2">
       					<p style="text-align: left; padding-top: 1rem;">
-						<?php if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
-							$mostrar = 'display= "none";';
-							}; ?>
-							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
+							<a  href="configuracion.php"><i class="icon-cog"></i></a>
       						 <a href="home.php"><i class="icon-home"></i></a>
 							<?php 
 								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {

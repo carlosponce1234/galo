@@ -10,7 +10,7 @@ if (!empty($_POST)) {
     $rows = $result->num_rows;
     $row = $result->fetch_assoc();
     if ($rows>0) {
-      // $idpc = $_SERVER['REMOTE_ADDR'];
+       $idpc = $_SERVER['REMOTE_ADDR'];
        $destino =  $mail;
         $to = $mail;
 $subject = "Credenciales inicio de sesion  de ".$row['user_monbre'];
@@ -21,7 +21,7 @@ $message = "
 <title>credenciales de inicio de secion</title>
 </head>
 <body>
-<p>Hemos recibido tu solicitud de credenciañes desde la pc:</br>
+<p>Hemos recibido tu solicitud de credenciañes desde la pc: ".$idpc."</br>
 si no has sido tu ponte en contacto con los administradores de la aplicacion y solicita un cambio de contraseña </p>
 <table>
 <tr>

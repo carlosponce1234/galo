@@ -1,6 +1,7 @@
 <?php 
 	require ('../core/conexion.php');
 session_start();
+date_default_timezone_set('America/Managua');
 	
 	if(!isset($_SESSION["user_id"])){
 		header("Location: ../index.php");
@@ -128,10 +129,7 @@ session_start();
 			<div class="cell medium-3 align-center"style="background-color: #000000; ">
 				<div class="cell medium-12 op-home2">
       					<p style="text-align: left; padding-top: 1rem;">
-						<?php if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
-							$mostrar = 'display= "none";';
-							}; ?>
-							<a style="<?php echo $mostrar;?>" href="configuracion.php"><i class="icon-cog"></i></a>
+							<a  href="configuracion.php"><i class="icon-cog"></i></a>
       						 <a href="home.php"><i class="icon-home"></i></a>
 								<?php if ($row['user_subir'] == 1)  {
   							# code...
@@ -185,8 +183,7 @@ session_start();
   									<div class="btn-group">
   										<p id="bus-result">Buscar </p>
   										<p class="sst"><i class="icon-search "></i></p>
-  									</div>
-  									
+  									</div>			
   				  </div>	
     			</div>
 			</div>
