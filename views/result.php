@@ -128,10 +128,11 @@ date_default_timezone_set('America/Managua');
       					<p style="text-align: left; padding-top: 1rem;">
 							<a  href="configuracion.php"><i class="icon-cog"></i></a>
       						 <a href="home.php"><i class="icon-home"></i></a>
-								<?php if ($row['user_subir'] == 1)  {
+								<?php 
+								 if ($row['user_subir'] == 1)  {
   							# code...
-  							echo "<button id='file'> Subir un archivo</i></button>";
-  						} ?>
+  							echo "<button id='file' class='btn'>Subir Archivo</button>";
+  						}; 	 ?>
       						</p>
       				</div>
       			<div class="barra_lat">
