@@ -114,6 +114,11 @@ session_start();
 							<tbody id="user_table">
 								<?php 
 								   		foreach ($result2 as $key => $v) {
+								   			if ($v['cliente_id'] == 1) {
+								   				$hh = 'disabled';
+								   			} else {
+								   				$hh = ' ';
+								   			};
 										echo "<tr>
 												<td id=".$v['cliente_id']." class='cliente_id'>".$v['cliente_id']."</td>
 												<td id=".$v['cliente_nombre']." class='cliente_nombre'>".$v['cliente_nombre']."</td>
@@ -122,7 +127,7 @@ session_start();
 												<td>
 													<button id='edit_cliente' class='button editar small'>
 													<i class='icon-eye'></i></button>
-									<button id='elimina' class='button desactiva small'><i class='icon-bin'></i></button>
+									<button ".$hh." id='elimina' class='button desactiva small'><i class='icon-bin'></i></button>
 												</td>
 											</tr>";
 										};		
@@ -220,7 +225,7 @@ session_start();
 			var cell_id = row.children('.cliente_id');
 			var cliente_id = cell_id.attr('id');
 				var operacion = 'delite';
-				//alert(cliente_id+', '+operacion);
+				alert(cliente_id+', '+operacion);
 				$.ajax({
 					url: '../core/clientes.php',
 					type: 'POST',
@@ -230,6 +235,7 @@ session_start();
 					},
 					success: function(data){
 						alert(data);
+						row.remove();
 					},
 				});
 			};

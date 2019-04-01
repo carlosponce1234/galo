@@ -110,7 +110,7 @@ require '../core/conexion.php';
 					 ?>
 		</select>
 		<label for="archivo">archivo</label>
-		<input type="file" name="archivo" required>
+		<input type="file" name="archivo" required maxlength="20480">
 		<button class="guardar" id="subir-file"><i class="icon-cloud-upload"></i> Subir</button>
 		<button  class="reset" id="cancelar-file"><i class="icon-cross"></i>Cancelar</button>	
   	</form>

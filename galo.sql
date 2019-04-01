@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-03-2019 a las 00:26:17
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 01-04-2019 a las 02:52:14
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,7 +40,11 @@ CREATE TABLE `categoria` (
 
 INSERT INTO `categoria` (`cat_id`, `cat_desc`, `cat_nombre`) VALUES
 (1, 'Polizas de importaciones y documentos relacionados ', 'Importaciones'),
-(3, 'documentaciÃ³n relacionada a las exportaciones ', 'exportaciones');
+(3, 'documentaciÃ³n relacionada a las exportaciones ', 'exportaciones'),
+(4, '', 'Re-exportacion'),
+(5, '', 'Compras Locales'),
+(6, '', 'PÃ³lizas Definitivas'),
+(7, 'documentos de archivo galo y asociados ', 'Archivo');
 
 -- --------------------------------------------------------
 
@@ -60,9 +64,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`cliente_id`, `cliente_nombre`, `cliente_mail`, `cliente_info`) VALUES
-(1, 'Galo y Asociados s,a', 'vmorales@galoyasociados.com', 'Agencia aduanera galo y asociados '),
-(2, 'Alvia comercial', 'alvia@mail.com', 'importador de aluminio y vidrio'),
-(4, 'hector antonio', 'ventas@solucionestarget.com', '');
+(1, 'Galo y Asociados s,a', 'vmorales@galoyasociados.com', 'Agencia aduanera galo y asociados ');
 
 -- --------------------------------------------------------
 
@@ -87,16 +89,7 @@ CREATE TABLE `documentos` (
 --
 
 INSERT INTO `documentos` (`doc_id`, `doc_numliq`, `doc_ruta`, `doc_cat`, `doc_cliente`, `doc_usuario`, `doc_anio`, `doc_papelera`, `doc_timestamp`) VALUES
-(1, 'L-20154', 'UPLOADS/L-20154', 1, 1, 1, 2019, 0, '2019-03-24 20:49:03'),
-(2, 'L-4512', 'UPLOADS/L-4512', 1, 1, 1, 2019, 1, '2019-03-25 02:20:58'),
-(7, 'L-6532', 'UPLOADS/L-6532', 1, 1, 1, 2019, 1, '2019-03-25 02:18:52'),
-(9, 'carlos', '../UPLOADS//carlos.pdf', 1, 1, 1, 2019, 1, '2019-03-25 02:14:01'),
-(10, 'carlos', '../UPLOADS//carlos.pdf', 1, 1, 1, 2019, 1, '2019-03-25 02:13:57'),
-(11, 'L-7895', 'UPLOADS/L-7895.pdf', 1, 1, 1, 2019, 0, '2019-03-25 02:16:33'),
-(12, 'l-8532', 'UPLOADS/l-8532.pdf', 1, 1, 1, 2018, 1, '2019-03-25 02:20:36'),
-(14, 'L-2356', 'UPLOADS/L-2356.pdf', 3, 2, 1, 2019, 0, '2019-03-25 23:28:38'),
-(15, 'L-55032', 'UPLOADS/L-55032.pdf', 3, 4, 1, 2019, 0, '2019-03-25 23:29:09'),
-(16, 'carlos ponce', 'UPLOADS/carlos ponce.pdf', 1, 2, 1, 2019, 0, '2019-03-26 18:58:36');
+(12, 'l-8532', 'UPLOADS/l-8532.pdf', 1, 1, 1, 2018, 1, '2019-03-25 02:20:36');
 
 -- --------------------------------------------------------
 
@@ -134,6 +127,11 @@ CREATE TABLE `usuarios` (
   `user_tipo` varchar(20) NOT NULL,
   `user_cliente` int(11) NOT NULL,
   `user_permiso` int(2) NOT NULL,
+  `user_buscar` tinyint(1) NOT NULL,
+  `user_subir` tinyint(1) NOT NULL,
+  `user_crear_u` tinyint(1) NOT NULL,
+  `user_crear_c` tinyint(1) NOT NULL,
+  `user_crear_ct` tinyint(1) NOT NULL,
   `user_estado` tinyint(4) NOT NULL,
   `user_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -142,12 +140,8 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`user_id`, `user_monbre`, `user_mail`, `user_pass`, `user_tipo`, `user_cliente`, `user_permiso`, `user_estado`, `user_timestamp`) VALUES
-(1, 'Carlos perez', 'administrador@mail.com', 'administrador', 'Administrador', 1, 4, 0, '2019-03-28 22:47:06'),
-(3, 'carlos ivan perez', 'carlos@mail.com', 'carlosp', 'administrador', 1, 4, 0, '2019-03-22 21:01:01'),
-(4, 'hector perez', 'caos.qwer@gmail.com', 'hector', 'Administrador', 1, 4, 1, '2019-03-23 19:16:30'),
-(5, 'carlosp', 'carlosivanperezponce@yahoo.com', 'carlosp', 'Cliente', 2, 5, 0, '2019-03-25 21:07:41'),
-(6, 'hector', 'hector@mail.com', 'hector', 'Sub-usuario(cliente)', 2, 2, 0, '2019-03-26 14:34:36');
+INSERT INTO `usuarios` (`user_id`, `user_monbre`, `user_mail`, `user_pass`, `user_tipo`, `user_cliente`, `user_permiso`, `user_buscar`, `user_subir`, `user_crear_u`, `user_crear_c`, `user_crear_ct`, `user_estado`, `user_timestamp`) VALUES
+(1, 'Carlos perez', 'administrador@mail.com', 'administrador', 'Administrador', 1, 4, 1, 1, 1, 1, 1, 0, '2019-03-31 04:05:16');
 
 --
 -- Índices para tablas volcadas
@@ -196,7 +190,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
@@ -208,7 +202,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
@@ -220,7 +214,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas

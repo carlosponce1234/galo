@@ -48,9 +48,8 @@ if (isset($operacion)) {
 			} else{
 				echo "ERORR: NO SE PUEDE LERR EL ID";
 			}
-
-
 				break;
+				
 				case 'delite':
 					$cliente_id = $_POST['cliente_id'];
 			if (isset($cliente_id)){
