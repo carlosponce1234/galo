@@ -34,6 +34,7 @@ require '../core/conexion.php';
                 #echo $nombre." ".$anio." ".$cliente." ".$cat.;              
                 $sql6 = "INSERT INTO `documentos` (`doc_id`, `doc_numliq`, `doc_ruta`, `doc_cat`, `doc_cliente`, `doc_usuario`, `doc_anio`, `doc_papelera`, `doc_timestamp`) VALUES (NULL, '$nombre', '$doc_ruta', '$cat', '$cliente', '$user_id', '$anio', '0', CURRENT_TIMESTAMP)";
                 if($mysqli->query($sql6) === true){
+                	header("Location: result.php?anio=".$anio."&cat=0");
                 	$mensaje = "El archivo se ha subido correctamente";
                 	echo "<script> alert(".$mensaje.") </script>";
 				} else{
@@ -111,7 +112,7 @@ require '../core/conexion.php';
 		</select>
 		<label for="archivo">archivo</label>
 		<input type="file" name="archivo" required maxlength="20480">
-		<button class="guardar" id="subir-file"><i class="icon-cloud-upload"></i> Subir</button>
+		<button type="submit" class="guardar" id="subir-file"><i class="icon-cloud-upload"></i> Subir</button>
 		<input type="reset" class="reset" id="cancelar-file"></input>	
   	</form>
   </div>

@@ -6,9 +6,7 @@ session_start();
 		header("Location: ../index.php");
 	}
 		$user_id =	$_SESSION['user_id']; 
-		$user_tipo = $_SESSION['user_tipo']; 
-		$user_name = $_SESSION['user_name'] ;
-		$user_permiso =	$_SESSION['user_permisp'];
+		
 
 		$sql="SELECT * FROM usuarios Where user_id='$user_id'";
 		$result=$mysqli->query($sql);
@@ -85,8 +83,8 @@ session_start();
       					<p style="text-align: left; padding-top: 1rem;">
 							<a  href="configuracion.php"><i class="icon-cog"></i></a>
       						 <a href="home.php"><i class="icon-home"></i></a>
-							<?php 
-								 if ($row['user_permiso'] == 1 || $row['user_permiso'] == 3 || $row['user_permiso'] == 4)  {
+						<?php 
+								 if ($row['user_subir'] == 1)  {
   							# code...
   							echo "<button id='file' class='btn'>Subir Archivo</button>";
   						}; 	 ?>

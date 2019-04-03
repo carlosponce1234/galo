@@ -16,11 +16,6 @@ session_start();
 		$rows = $result->num_rows;
 		$row = $result->fetch_assoc();
 
-		if ($row['user_permiso'] == 3 || $row['user_permiso'] == 5 ) {
-			# code...
-			header("Location: home.php");
-		};
-
 		$sql2="SELECT * FROM cliente";
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
@@ -321,6 +316,8 @@ session_start();
 	$(document).ready(function(){
 
 		$(document).on('click', '#guardar', function(event){
+			var r = confirm('suguro desea crear un nuevo usuario?');
+			if (r == false) { window.location.reload();;}else{
 			var operacion = 'insert';
 			var user_name = $('#n_usuario').val();
 			var user_mail = $('#mail').val();
@@ -350,15 +347,18 @@ session_start();
 						$('#mail').val('');
 						$('#pass').val('');
 						$('#pass1').val('');
+						window.location.reload();
+					},
+
+					error: function(data){
+						alert('ha ocurrido un error en la operacion---recargar la pagina e intentar denuevo si el error persiste pongase en contacto con los administradores del sitio')
 					}
 				});
 			};
+			};
 		});	
 		$(document).on('click', '#reset', function(event){
-			$('#n_usuario').val('');
-			$('#mail').val('');
-			$('#pass').val('');
-			$('#pass1').val('');
+			window.location.reload();
 		});
 
 		$(document).on('click', '#file',function(event){
