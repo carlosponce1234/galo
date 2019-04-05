@@ -23,9 +23,6 @@ session_start();
 		$sql3 =" SELECT * FROM permisos";
 		$result3=$mysqli->query($sql3);
 		$row3 = $result3->fetch_assoc();
-
-
-
  ?>
  <!doctype html>
 <html class="no-js" lang="es" dir="ltr">
@@ -314,17 +311,16 @@ session_start();
 </html>  
 <script>
 	$(document).ready(function(){
-
 		$(document).on('change', '#cliente', function(event){
 			var t_clente = $('#cliente').val();
 			if (t_clente == 1) {
 				$('#client').attr('disabled','true');
 				$('#sub').attr('disabled','true');
-					$('#ad').attr('disabled','false');
-				$('#cola').attr('disabled','false');
+				$('#ad').removeAttr('disabled');
+				$('#cola').removeAttr('disabled');
 			}else{
-				$('#client').attr('disabled','false');
-				$('#sub').attr('disabled','false');
+				$('#client').removeAttr('disabled');
+				$('#sub').removeAttr('disabled');
 				$('#ad').attr('disabled','true');
 				$('#cola').attr('disabled','true');
 			}
