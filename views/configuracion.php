@@ -320,6 +320,13 @@ session_start();
 			if (t_clente == 1) {
 				$('#client').attr('disabled','true');
 				$('#sub').attr('disabled','true');
+					$('#ad').attr('disabled','false');
+				$('#cola').attr('disabled','false');
+			}else{
+				$('#client').attr('disabled','false');
+				$('#sub').attr('disabled','false');
+				$('#ad').attr('disabled','true');
+				$('#cola').attr('disabled','true');
 			}
 			//alert(t_user);
 		});
