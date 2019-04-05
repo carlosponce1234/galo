@@ -35,6 +35,7 @@ session_start();
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
 			} else {
+
 		$sql2 ="SELECT * FROM usuarios INNER JOIN cliente ON user_cliente = cliente_id WHERE user_cliente = '$cli'";
 		$result2=$mysqli->query($sql2);
 		$row2 = $result2->fetch_assoc();
@@ -181,6 +182,15 @@ session_start();
 				$diss = ' ';
 			};
 		 ?>	
+		 <?php 
+			if ($row['user_tipo'] == 'Cliente' ||$row['user_tipo'] == 'Sub-usuario(cliente)' ) {
+				$tt = 'disabled';
+				$dd = 'style="display: none;"';
+			} else {
+				$tt = ' ';
+				$dd = ' ';
+			};
+			?>
   		<input type="text" name="user_id" id="user_id" style="display: none;">
   		<label for="n_usuario">Nombre de usuario</label>
   		<input type="text" id="n_usuario" name="n_usuario">
@@ -201,7 +211,7 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4">
+									<div class="cell medium-4" <?php echo $diss; ?>>
 										<span>SUBIR</span>
 									   <div class="switch galo small">
   										<input class="switch-input" id="p-subir" type="checkbox" name="p-subir">
@@ -223,7 +233,7 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4">
+									<div class="cell medium-4" <?php echo $diss; ?>>
 										<span>crea clientes</span>
 									   <div class="switch galo small">
   										<input class="switch-input" id="p-clientes" type="checkbox" name="p-clientes">
@@ -234,7 +244,7 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4">
+									<div class="cell medium-4" <?php echo $diss; ?>>
 										<span>crea cat.</span>
 									   <div class="switch galo small">
   										<input  class="switch-input" id="p-categoria" type="checkbox" name="p-categoria">
@@ -361,6 +371,7 @@ session_start();
 					},
 					success: function(data){
 						alert(data);
+						window.location.reload();
 					},
 				});
 				$('#e_user').foundation('close');
@@ -387,6 +398,8 @@ session_start();
 					},
 					success: function(data){
 						alert(data);
+						window.location.reload();
+
 					},
 				});
 			};

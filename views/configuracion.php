@@ -190,10 +190,10 @@ session_start();
 								   		
 								   	 ?>
 								   	<option value="0" disabled selected>Eligir tipo de usuario</option>
-								   	<option <?php echo $tt ?> value="Administrador">Administrador</option>
-								   	<option <?php echo $tt ?> value="Colaborador">Colaborador</option>
-								   	<option <?php echo $tt ?> value="Cliente">Cliente</option>
-								   	<option value="Sub-usuario(cliente)">Sub-usuario(cliente)</option>
+								   	<option id="ad" <?php echo $tt ?> value="Administrador">Administrador</option>
+								   	<option id="cola" <?php echo $tt ?> value="Colaborador">Colaborador</option>
+								   	<option id="client" <?php echo $tt ?> value="Cliente">Cliente</option>
+								   	<option id="sub" value="Sub-usuario(cliente)">Sub-usuario(cliente)</option>
 								   </select>	
 						    	</div>
 							
@@ -314,6 +314,16 @@ session_start();
 </html>  
 <script>
 	$(document).ready(function(){
+
+		$(document).on('change', '#cliente', function(event){
+			var t_clente = $('#cliente').val();
+			if (t_clente == 1) {
+				$('#client').attr('disabled','true');
+				$('#sub').attr('disabled','true');
+			}
+			//alert(t_user);
+		});
+
 
 		$(document).on('click', '#guardar', function(event){
 			var r = confirm('suguro desea crear un nuevo usuario?');
