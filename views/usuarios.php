@@ -191,6 +191,13 @@ session_start();
 				$dd = ' ';
 			};
 			?>
+			<?php 
+			if ($row['user_tipo'] == 'Sub-usuario(cliente)' ) {
+				$ddi = 'style="display: none;"';
+			} else {
+				$ddi = ' ';
+			};
+			?>
   		<input type="text" name="user_id" id="user_id" style="display: none;">
   		<label for="n_usuario">Nombre de usuario</label>
   		<input type="text" id="n_usuario" name="n_usuario">
@@ -211,7 +218,7 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4" <?php echo $diss; ?>>
+									<div class="cell medium-4" <?php echo $dd; ?>>
 										<span>SUBIR</span>
 									   <div class="switch galo small">
   										<input class="switch-input" id="p-subir" type="checkbox" name="p-subir">
@@ -222,7 +229,7 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4">
+									<div class="cell medium-4" <?php echo $dd; ?>>
 										<span>crea usuarios</span>
 									   <div class="switch galo small">
   										<input class="switch-input" id="p-usuario" type="checkbox" name="p-usuario">
@@ -233,7 +240,7 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4" <?php echo $diss; ?>>
+									<div class="cell medium-4" <?php echo $dd; ?>>
 										<span>crea clientes</span>
 									   <div class="switch galo small">
   										<input class="switch-input" id="p-clientes" type="checkbox" name="p-clientes">
@@ -244,7 +251,7 @@ session_start();
   										</label>
 									   </div>
 									</div>
-									<div class="cell medium-4" <?php echo $diss; ?>>
+									<div class="cell medium-4" <?php echo $dd; ?>>
 										<span>crea cat.</span>
 									   <div class="switch galo small">
   										<input  class="switch-input" id="p-categoria" type="checkbox" name="p-categoria">
