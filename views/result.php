@@ -221,7 +221,7 @@ date_default_timezone_set('America/Managua');
 				<div class="cell medium-7 medium-offset-1">
 					<div id="wraper" class="input-group">
 						<button style="border-radius: 200px 0px 0px 200px;" class="buscar_btn input-group-button"><i class="icon-search"></i></button>
-						<input style="border-radius: 0px 200px 200px 0px;" class="input-group-field " type="text" id="buscar_user" placeholder=" Buscar usuario">
+						<input style="border-radius: 0px 200px 200px 0px;" class="input-group-field " type="text" id="buscar_user" placeholder=" Buscar documentos">
 					</div>
 				</div>
 			</div>
