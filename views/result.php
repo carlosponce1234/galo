@@ -20,19 +20,49 @@ date_default_timezone_set('America/Managua');
 			$doc_anio = $_GET['anio'];
 		$cat = $_GET['cat'];
 
+		if (isset($_GET['estd'])) {
+			# code...
+			switch ($_GET['estd']) {
+				case 'ok':
+					# code...
+				$msg= 'Tu Archivo fue subido exitosamente';
+				$estd = "$.confirm({title: 'Tuarchivo se subio exitosamente!',content: 'El archivo a sido guardado exitosamente',
+    			type: 'red', typeAnimated: true,  buttons: { tryAgain: { text: 'Try again', btnClass: 'btn-red',
+    			 action: function(){   }  }, close: function () {     }  }});"; 
+					break;
+				case 'err-bd':
+				$msg= 'Ha ocurrido un error registrando la operacion en la base de datos. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.';
+				$estd = "$.confirm({title: 'Encontramos un error!',content: 'Ha ocurrido un error registrando la operacion en la base de datos. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.',
+    			type: 'red', typeAnimated: true,  buttons: { tryAgain: { text: 'Try again', btnClass: 'btn-red',
+    			 action: function(){   }  }, close: function () {     }  }});";
+					# code...
+					break;
+					case 'err-fl':
+						# code...
+					$msg= 'Ha ocurrido un error guardando el archivo. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.';
+				$estd = "$.confirm({title: 'Encontramos un error!',content: 'Ha ocurrido un error guardando el archivo. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.',
+    			type: 'red', typeAnimated: true,  buttons: { tryAgain: { text: 'Try again', btnClass: 'btn-red',
+    			 action: function(){   }  }, close: function () {     }  }});";
+						break;
+				default:
+					# code...
+					break;
+			}
+		};
+
 	
 		if (isset($_GET['doc_numliq'])) {
 			# code...
 			$doc_numliq = $_GET['doc_numliq'];
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq  LIKE '%$doc_numliq%' AND doc_anio = '$doc_anio' AND doc_papelera = '0'";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq  LIKE '%$doc_numliq%' AND doc_anio = '$doc_anio' AND doc_papelera = '0'  order by 'doc_id' desc";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 
 			} else {
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0'";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0' order by 'doc_id' desc";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -41,13 +71,13 @@ date_default_timezone_set('America/Managua');
 		} else {
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0 order by 'doc_id' desc";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 			} else {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0 order by 'doc_id' desc";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -65,13 +95,13 @@ date_default_timezone_set('America/Managua');
 			$doc_numliq = $_GET['doc_numliq'];
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_anio = '$doc_anio' AND doc_papelera = '0'  AND doc_cliente = '$cli'";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_anio = '$doc_anio' AND doc_papelera = '0'  AND doc_cliente = '$cli' order by 'doc_id' desc";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 
 			} else {
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0' AND doc_cliente = '$cli' ";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0' AND doc_cliente = '$cli'  order by 'doc_id' desc";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -80,13 +110,13 @@ date_default_timezone_set('America/Managua');
 		} else {
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0 AND doc_cliente = '$cli'";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0 AND doc_cliente = '$cli' order by 'doc_id' desc";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 			} else {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0 AND doc_cliente = '$cli'";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0 AND doc_cliente = '$cli' order by 'doc_id' desc";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -118,6 +148,8 @@ date_default_timezone_set('America/Managua');
     <link rel="stylesheet" href="../font/style.css">
     <!--[if lt IE 8]><!-->
     <link rel="stylesheet" href="../font/ie7/ie7.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+	
     <!--<![endif]-->
 </head>
 <body>
@@ -227,6 +259,7 @@ date_default_timezone_set('America/Managua');
 			</div>
 			<div class="grid-x grid-padding-x tabla">
 				<div class="cell medium-12">
+					<?php echo $msg; ?>
 					<table id="mytable">
 						<thead>
 							<th>ID</th>
@@ -273,10 +306,15 @@ date_default_timezone_set('America/Managua');
   <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>
+    <script src="../js/jquery.form.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script src="../js/app.js"></script>
 </html>  
 <script>
 	$(document).ready(function(){
+
+			<?php echo $estd; ?>
+
 		$(document).on('click', '#ver_pdf', function(event){
 			var dir = $(this).parent().attr('id');
 			var url = "../"+dir;

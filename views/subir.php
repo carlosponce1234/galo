@@ -39,6 +39,7 @@ require '../core/conexion.php';
                 	echo "<script> alert(".$mensaje.") </script>";
 				} else{
 					$error = "ERROR: No se pudo realizar operacion. ". $mysqli->error;
+					var_dump($error);
 					echo "<script> alert(".$error.") </script>";
 					}                
                 }        
@@ -46,8 +47,11 @@ require '../core/conexion.php';
  ?>
  <div class="reveal" id="e_subir" data-reveal data-animation-in="slidein">
   	<h5>Subir Archivo</h5>
+  	<div id="pre-load" style="display: none;">
+  		<img src="../img/gif-galo1.gif" alt="cargando....">
+  	</div>
   	<hr>
-  	<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+  	<form action="../core/subir.php" method="POST" enctype="multipart/form-data" id="myform">
   		<input id="user_id" name="user_id" style="display: none;" type="text" value="<?php echo $user_id; ?>">
   		<div>
   			<div style="width: 30%; float: left; margin-right: 3%;">

@@ -146,6 +146,7 @@ session_start();
   <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>
+    <script src="../js/jquery.form.min.js"></script>
     <script src="../js/app.js"></script>
 </html>
 <script>

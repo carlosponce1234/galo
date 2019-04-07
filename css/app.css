@@ -475,3 +475,8 @@ float: left;
 .switch.galo1 input ~ .switch-paddle {
   background: red;
 }
+.pre-load{
+	width: 80%;
+	margin-left: 10%
+	
+}
