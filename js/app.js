@@ -1,9 +1,10 @@
 $(document).foundation()
 
 $(document).ready(function(){
-	$(document).on('submit', '#myform', function(event){
+	$(document).on('click', '#subir-file', function(event){
 		$('#myform').attr('style','display:none');
 		$('#pre-load').attr('style','display:block');
+		//$('#myform').submit();
 		//uploadFile();
 		//this.reset();
 	    	    });
