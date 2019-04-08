@@ -197,12 +197,18 @@ session_start();
 			} else {
 				$ddi = ' ';
 			};
+			if ($row['user_tipo'] == 'Administrador') {
+				# code...
+				$adm = 'type="text"';
+			} else {
+				$adm= 'type="password"';
+			};
 			?>
   		<input type="text" name="user_id" id="user_id" style="display: none;">
   		<label for="n_usuario">Nombre de usuario</label>
   		<input type="text" id="n_usuario" name="n_usuario">
   		<label for="pass">Contraseña</label>
-  		<input type="password" id="pass" name="pass">
+  		<input <?php echo $adm; ?> id="pass" name="pass">
   		<label for="mail">Correo electronico</label>
   		<input type="email" id="mail" name="mail">
   		<label for="permisos">Permisos</label>
