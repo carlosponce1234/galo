@@ -25,21 +25,21 @@ date_default_timezone_set('America/Managua');
 			switch ($_GET['estd']) {
 				case 'ok':
 					# code...
-				$msg= 'Tu Archivo fue subido exitosamente';
-				$estd = "$.confirm({title: 'Tuarchivo se subio exitosamente!',content: 'El archivo a sido guardado exitosamente',
-    			type: 'red', typeAnimated: true, useBootstrap: false,  buttons: {  close: function () {     }  }});"; 
+				$msg= 'Tu Archivo fue GUARDADO exitosamente';
+				$estd = "$.confirm({title: 'Tu archivo fue exitosamente!',content: 'Acabas de subir un nuevo archivo, puedes encontrarlo en la tabla de resultados',
+    			type: 'green', typeAnimated: true, useBootstrap: false,  buttons: {  close:{ btnClass: 'btn-green', function () {     }}   }});"; 
 					break;
 				case 'err-bd':
 				$msg= 'Ha ocurrido un error registrando la operacion en la base de datos. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.';
 				$estd = "$.confirm({title: 'Encontramos un error!',content: 'Ha ocurrido un error registrando la operacion en la base de datos. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.',
-    			type: 'red', typeAnimated: true, useBootstrap: false,  buttons: {  close: function () {     }  }});";
+    			type: 'red', typeAnimated: true, useBootstrap: false,  buttons: {  close:{ btnClass: 'btn-red', function () {     }}   }});";
 					# code...
 					break;
 					case 'err-fl':
 						# code...
 					$msg= 'Ha ocurrido un error guardando el archivo. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.';
 				$estd = "$.confirm({title: 'Encontramos un error!',content: 'Ha ocurrido un error guardando el archivo. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.',
-    			type: 'red', typeAnimated: true, useBootstrap: false,  buttons: {  close: function () {     }  }});";
+    			type: 'red', typeAnimated: true, useBootstrap: false,  buttons: {  close:{ btnClass: 'btn-red', function () {     }} }});";
 						break;
 				default:
 					# code...
