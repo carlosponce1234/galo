@@ -6,9 +6,7 @@ session_start();
 		header("Location: ../index.php");
 	}
 		$user_id =	$_SESSION['user_id']; 
-		$user_tipo = $_SESSION['user_tipo']; 
-		$user_name = $_SESSION['user_name'] ;
-		$user_permiso =	$_SESSION['user_permisp'];
+		
 
 		$sql="SELECT * FROM usuarios Where user_id='$user_id'";
 		$result=$mysqli->query($sql);
