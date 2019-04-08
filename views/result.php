@@ -20,6 +20,8 @@ date_default_timezone_set('America/Managua');
 			$doc_anio = $_GET['anio'];
 		$cat = $_GET['cat'];
 
+		$estd= '';
+
 		if (isset($_GET['estd'])) {
 			# code...
 			switch ($_GET['estd']) {
@@ -308,6 +310,8 @@ date_default_timezone_set('America/Managua');
 </html>  
 <script>
 	$(document).ready(function(){
+
+		<?php echo $estd; ?>
 
 		$(document).on('click', '#ver_pdf', function(event){
 			var dir = $(this).parent().attr('id');
