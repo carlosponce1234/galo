@@ -48,7 +48,7 @@ require '../core/conexion.php';
  <div class="reveal" id="e_subir" data-reveal data-animation-in="slidein">
   	<h5>Subir Archivo</h5>
   	<div id="pre-load" style="display: none;">
-  		<div class="grid-container" style="background-color: #0b1f3f; color: white; text-align: center; ">
+  		<div class="grid-container" style="color: white; text-align: center; ">
   			<div class="grid-x grid-padding-x align-center">
   				<img src="../img/gif-galo1.gif" alt="cargando....">
   			</div>
