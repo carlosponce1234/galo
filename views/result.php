@@ -53,13 +53,13 @@ date_default_timezone_set('America/Managua');
 			$doc_numliq = $_GET['doc_numliq'];
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq  LIKE '%$doc_numliq%' AND doc_anio = '$doc_anio' AND doc_papelera = '0'  order by 'doc_id' desc";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq  LIKE '%$doc_numliq%' AND doc_anio = '$doc_anio' AND doc_papelera = '0'  ORDER BY 'doc_id' DESC";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 
 			} else {
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0' order by 'doc_id' desc";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0' ORDER BY 'doc_id' DESC";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -68,13 +68,13 @@ date_default_timezone_set('America/Managua');
 		} else {
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0 order by 'doc_id' desc";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0 ORDER BY 'doc_id' DESC";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 			} else {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0 order by 'doc_id' desc";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0 ORDER BY 'doc_id' DESC";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -92,13 +92,13 @@ date_default_timezone_set('America/Managua');
 			$doc_numliq = $_GET['doc_numliq'];
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_anio = '$doc_anio' AND doc_papelera = '0'  AND doc_cliente = '$cli' order by 'doc_id' desc";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_anio = '$doc_anio' AND doc_papelera = '0'  AND doc_cliente = '$cli' ORDER BY 'doc_id' DESC";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 
 			} else {
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0' AND doc_cliente = '$cli'  order by 'doc_id' desc";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_numliq LIKE '%$doc_numliq%' AND doc_cat = '$cat' AND doc_anio = '$doc_anio' AND doc_papelera = '0' AND doc_cliente = '$cli' ORDER BY 'doc_id' DESC";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
@@ -107,13 +107,13 @@ date_default_timezone_set('America/Managua');
 		} else {
 			if ($cat == 0) {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0 AND doc_cliente = '$cli' order by 'doc_id' desc";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_papelera = 0 AND doc_cliente = '$cli' ORDER BY 'doc_id' DESC";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();
 			} else {
 				# code...
-				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0 AND doc_cliente = '$cli' order by 'doc_id' desc";
+				$sql2 = "SELECT	* FROM	documentos INNER JOIN categoria ON doc_cat = cat_id WHERE doc_anio = '$doc_anio' AND doc_cat = '$cat' AND doc_papelera = 0 AND doc_cliente = '$cli' ORDER BY 'doc_id' DESC";
 				$result2=$mysqli->query($sql2);
 				$rows2 = $result2->num_rows;
 				$row2 = $result2->fetch_assoc();

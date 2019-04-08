@@ -48,7 +48,12 @@ require '../core/conexion.php';
  <div class="reveal" id="e_subir" data-reveal data-animation-in="slidein">
   	<h5>Subir Archivo</h5>
   	<div id="pre-load" style="display: none;">
-  		<img src="../img/gif-galo1.gif" alt="cargando....">
+  		<div class="grid-container">
+  			<div class="grid-x grid-padding-x align-center">
+  				<img src="../img/gif-galo1.gif" alt="cargando....">
+  				<p>Estamos procesando el archivo</p>
+  			</div>
+  		</div>
   	</div>
   	<hr>
   	<form action="../core/subir.php" method="POST" enctype="multipart/form-data" id="myform">
