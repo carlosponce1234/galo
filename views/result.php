@@ -27,19 +27,19 @@ date_default_timezone_set('America/Managua');
 					# code...
 				$msg= 'Tu Archivo fue subido exitosamente';
 				$estd = "$.confirm({title: 'Tuarchivo se subio exitosamente!',content: 'El archivo a sido guardado exitosamente',
-    			type: 'green', typeAnimated: true, useBootstrap: false,   close: function () {     }  }});"; 
+    			type: 'red', typeAnimated: true, useBootstrap: false,  buttons: {  close: function () {     }  }});"; 
 					break;
 				case 'err-bd':
 				$msg= 'Ha ocurrido un error registrando la operacion en la base de datos. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.';
 				$estd = "$.confirm({title: 'Encontramos un error!',content: 'Ha ocurrido un error registrando la operacion en la base de datos. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.',
-    			type: 'red', typeAnimated: true, useBootstrap: false,  close: function () {     }  }});";
+    			type: 'red', typeAnimated: true, useBootstrap: false,  buttons: {  close: function () {     }  }});";
 					# code...
 					break;
 					case 'err-fl':
 						# code...
 					$msg= 'Ha ocurrido un error guardando el archivo. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.';
 				$estd = "$.confirm({title: 'Encontramos un error!',content: 'Ha ocurrido un error guardando el archivo. --- error puede deberse a que la operacion tardo demasiado tiempo trate con un archivo mas pequeño---si el problema persiste informe al administrador.',
-    			type: 'red', typeAnimated: true, useBootstrap: false, close: function () {     }  }});";
+    			type: 'red', typeAnimated: true, useBootstrap: false,  buttons: {  close: function () {     }  }});";
 						break;
 				default:
 					# code...
