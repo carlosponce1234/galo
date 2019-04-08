@@ -480,3 +480,7 @@ float: left;
 	margin-left: 10%
 	
 }
+.loader{
+	background-color: #00011E; 
+	color: white;
+}

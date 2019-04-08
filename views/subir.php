@@ -46,7 +46,7 @@ require '../core/conexion.php';
 		};
  ?>
  <div class="reveal" id="e_subir" data-reveal data-animation-in="slidein">
-  	<h5>Subir Archivo</h5>
+  	<h5 id="trert">Subir Archivo</h5>
   	<div id="pre-load" style="display: none;">
   		<div class="grid-container" style="color: white; text-align: center; ">
   			<div class="grid-x grid-padding-x align-center">

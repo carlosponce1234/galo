@@ -28,7 +28,7 @@ date_default_timezone_set('America/Managua');
 				case 'ok':
 					# code...
 				$msg= 'Tu Archivo fue GUARDADO exitosamente';
-				$estd = "$.confirm({title: 'Tu archivo fue exitosamente!',content: 'Acabas de subir un nuevo archivo, puedes encontrarlo en la tabla de resultados',
+				$estd = "$.confirm({title: 'Tu archivo fue guardado exitosamente!',content: 'Acabas de subir un nuevo archivo, puedes encontrarlo en la tabla de resultados',
     			type: 'green', typeAnimated: true, useBootstrap: false,  buttons: {  close:{ btnClass: 'btn-green', function () {     }}   }});"; 
 					break;
 				case 'err-bd':
