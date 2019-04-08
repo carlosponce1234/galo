@@ -1,7 +1,7 @@
 <?php 
 	require ('../core/conexion.php');
 session_start();
-	
+	date_default_timezone_set('America/Managua');
 	if(!isset($_SESSION["user_id"])){
 		header("Location: ../index.php");
 	}
